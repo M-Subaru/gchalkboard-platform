@@ -1,5 +1,5 @@
 import { createClient, createAdminClient } from '@/lib/supabase/server'
-import { resend, FROM_ADDRESS, ADMIN_EMAIL } from '@/lib/resend/client'
+import { resend, FROM_ADDRESS } from '@/lib/resend/client'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 

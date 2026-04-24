@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { teacherSchema } from '@/lib/validations/teacher'
 import { createAdminClient } from '@/lib/supabase/server'
-import { resend, FROM_ADDRESS, ADMIN_EMAIL } from '@/lib/resend/client'
+import { resend, FROM_ADDRESS, getAdminEmails } from '@/lib/resend/client'
 
 const MAX_CV_SIZE = 5 * 1024 * 1024        // 5 MB
 const MAX_PHOTO_SIZE = 2 * 1024 * 1024     // 2 MB
@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
     // Notify admin
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: ADMIN_EMAIL,
+      to: getAdminEmails(),
       subject: `New teacher registration: ${data.full_name}`,
       html: `<h2>New Teacher Registration</h2>
 <table>

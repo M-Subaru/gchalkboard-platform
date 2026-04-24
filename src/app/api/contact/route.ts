@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { contactSchema } from '@/lib/validations/contact'
-import { resend, FROM_ADDRESS, ADMIN_EMAIL } from '@/lib/resend/client'
+import { resend, FROM_ADDRESS, getAdminEmails } from '@/lib/resend/client'
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     // Notify admin
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: ADMIN_EMAIL,
+      to: getAdminEmails(),
       subject: `Contact form message from ${name}`,
       html: `<h2>New Contact Message</h2>
 <table>

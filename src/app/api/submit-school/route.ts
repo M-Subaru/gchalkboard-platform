@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { schoolSchema } from '@/lib/validations/school'
 import { createAdminClient } from '@/lib/supabase/server'
-import { resend, FROM_ADDRESS, ADMIN_EMAIL } from '@/lib/resend/client'
+import { resend, FROM_ADDRESS, getAdminEmails } from '@/lib/resend/client'
 
 export async function POST(req: NextRequest) {
   try {
@@ -75,7 +75,7 @@ You can expect to hear from us within three to five working days.</p>
     // Admin notification
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: ADMIN_EMAIL,
+      to: getAdminEmails(),
       subject: `New school vacancy: ${data.school_name} — ${data.job_title}`,
       html: `<h2>New School Vacancy</h2>
 <table>
