@@ -51,7 +51,7 @@ export default function ForTeachersPage() {
           </motion.h1>
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-[var(--gc-muted)] leading-relaxed max-w-xl">
-            Working internationally is a significant decision. We treat it like one. No mass
+            Moving abroad to teach is a big call. We treat it like one. No mass
             applications, no chasing — just a straightforward process designed around you.
           </motion.p>
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={3} className="mt-8">

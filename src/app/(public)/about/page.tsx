@@ -94,10 +94,10 @@ export default function AboutPage() {
               experience at GCSE or A-Level equivalent.
             </p>
             <p className="text-[var(--gc-muted)] leading-relaxed mb-4">
-              For teachers, these roles often come with competitive salaries, tax-free income,
-              accommodation allowances, and a chance to develop professionally in a genuinely
-              different context. It is not for everyone, but for those who are ready for it, the
-              experience tends to be significant.
+              For teachers, these roles typically come with a tax-free salary,
+              accommodation, flights and healthcare. The cost of living is low relative
+              to the package. It is not for everyone, but for teachers who go in with clear
+              expectations, the experience tends to leave a mark.
             </p>
             <p className="text-[var(--gc-muted)] leading-relaxed">
               We focus on this region because we know it. We understand the schools, the curricula,

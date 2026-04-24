@@ -201,7 +201,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Ready to get started?</h2>
-            <p className="text-white/80 mb-8 text-sm">Whether you are a teacher looking for your next opportunity or a school with a vacancy to fill.</p>
+            <p className="text-white/80 mb-8 text-sm">Teachers: register your profile and we will be in touch if we have a match. Schools: post a vacancy and we start the search.</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/talent-pool" className="px-6 py-3 rounded-lg bg-white text-[#0ea472] font-semibold text-sm hover:bg-white/90 transition-colors duration-150">Join the Talent Pool</Link>
               <Link href="/post-vacancy" className="px-6 py-3 rounded-lg border border-white text-white font-semibold text-sm hover:bg-white/10 transition-colors duration-150">Post a Vacancy</Link>
