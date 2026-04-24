@@ -7,7 +7,7 @@ const PROTECTED = ['/dashboard', '/teachers', '/schools']
 // Routes that authenticated users should not see
 const AUTH_ONLY = ['/login']
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
 
   const supabase = createServerClient(

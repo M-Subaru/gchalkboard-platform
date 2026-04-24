@@ -1,5 +1,21 @@
+"$schema" = "./node_modules/wrangler/config-schema.json"
 name = "globalchalkboard"
-compatibility_date = "2024-09-23"
+main = ".open-next/worker.js"
+compatibility_date = "2025-05-05"
 compatibility_flags = ["nodejs_compat"]
 
-pages_build_output_dir = ".next"
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[vars]
+NEXT_PUBLIC_SUPABASE_URL = "https://dnzxvqbjmlkfbanqznpc.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuenh2cWJqbWxrZmJhbnF6bnBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMjEyNjIsImV4cCI6MjA5MjU5NzI2Mn0.HN-oh4ls6LD6n0u7M45GRjt0g6DaZwdGSZy0pKy0ank"
+
+[[routes]]
+pattern = "gchalkboard.com"
+custom_domain = true
+
+[[routes]]
+pattern = "www.gchalkboard.com"
+custom_domain = true
