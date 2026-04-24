@@ -58,6 +58,7 @@ LevelValueUsage`--shadow-sm0 1px 2px rgba(0,0,0,0.05)`Subtle lift`--shadow-md0 4
   background: transparent;
   color: #0369A1;
   border: 2px solid #0369A1;
+```
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
