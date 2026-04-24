@@ -1,14 +1,10 @@
 # Design System Master File
 
-> **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
-> If that file exists, its rules **override** this Master file.
-> If not, strictly follow the rules below.
+> **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`. If that file exists, its rules **override** this Master file. If not, strictly follow the rules below.
 
 ---
 
-**Project:** GlobalChalkboard
-**Generated:** 2026-04-24 19:23:17
-**Category:** Job Board/Recruitment
+**Project:** GlobalChalkboard **Generated:** 2026-04-24 19:23:17 **Category:** Job Board/Recruitment
 
 ---
 
@@ -16,13 +12,7 @@
 
 ### Color Palette
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#0369A1` | `--color-primary` |
-| Secondary | `#0EA5E9` | `--color-secondary` |
-| CTA/Accent | `#22C55E` | `--color-cta` |
-| Background | `#F0F9FF` | `--color-background` |
-| Text | `#0C4A6E` | `--color-text` |
+RoleHexCSS VariablePrimary`#0369A1--color-primary`Secondary`#0EA5E9--color-secondary`CTA/Accent`#22C55E--color-cta`Background`#F0F9FF--color-background`Text`#0C4A6E--color-text`
 
 **Color Notes:** Professional blue + success green
 
@@ -34,24 +24,11 @@
 
 ### Spacing Variables
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+TokenValueUsage`--space-xs4px` / `0.25rem`Tight gaps`--space-sm8px` / `0.5rem`Icon gaps, inline spacing`--space-md16px` / `1rem`Standard padding`--space-lg24px` / `1.5rem`Section padding`--space-xl32px` / `2rem`Large gaps`--space-2xl48px` / `3rem`Section margins`--space-3xl64px` / `4rem`Hero padding
 
 ### Shadow Depths
 
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
+LevelValueUsage`--shadow-sm0 1px 2px rgba(0,0,0,0.05)`Subtle lift`--shadow-md0 4px 6px rgba(0,0,0,0.1)`Cards, buttons`--shadow-lg0 10px 15px rgba(0,0,0,0.1)`Modals, dropdowns`--shadow-xl0 20px 25px rgba(0,0,0,0.15)`Hero images, featured cards
 
 ---
 
@@ -185,13 +162,13 @@
 
 Before delivering any UI code, verify:
 
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+- \[ \] No emojis used as icons (use SVG instead)
+- \[ \] All icons from consistent icon set (Heroicons/Lucide)
+- \[ \] `cursor-pointer` on all clickable elements
+- \[ \] Hover states with smooth transitions (150-300ms)
+- \[ \] Light mode: text contrast 4.5:1 minimum
+- \[ \] Focus states visible for keyboard navigation
+- \[ \] `prefers-reduced-motion` respected
+- \[ \] Responsive: 375px, 768px, 1024px, 1440px
+- \[ \] No content hidden behind fixed navbars
+- \[ \] No horizontal scroll on mobile
