@@ -50,6 +50,21 @@ export default async function TeacherDetailPage({ params }: Props) {
     photoUrl = data?.signedUrl ?? null
   }
 
+  // Generate signed URLs for additional documents
+  const additionalDocUrls: { name: string; url: string }[] = []
+  if (teacher.additional_doc_paths && teacher.additional_doc_paths.length > 0) {
+    for (let i = 0; i < teacher.additional_doc_paths.length; i++) {
+      const path = teacher.additional_doc_paths[i]
+      const { data } = await supabase.storage
+        .from('teacher-additional-docs')
+        .createSignedUrl(path, 3600)
+      if (data?.signedUrl) {
+        const ext = path.split('.').pop() ?? 'file'
+        additionalDocUrls.push({ name: `Additional document ${i + 1} (.${ext})`, url: data.signedUrl })
+      }
+    }
+  }
+
   const submittedAt = new Date(teacher.submitted_at).toLocaleDateString('en-GB', {
     day: 'numeric', month: 'long', year: 'numeric'
   })
@@ -124,6 +139,16 @@ export default async function TeacherDetailPage({ params }: Props) {
                 </a>
               ) : (
                 <span className="text-sm text-slate-400">No CV uploaded</span>
+              )}
+              {additionalDocUrls.map((doc, i) => (
+                <a key={i} href={doc.url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700
+                    text-sm font-medium rounded-lg hover:bg-slate-200 transition border border-slate-200">
+                  {doc.name}
+                </a>
+              ))}
+              {additionalDocUrls.length === 0 && !cvUrl && (
+                <span className="text-sm text-slate-400">No documents uploaded</span>
               )}
             </div>
           </div>

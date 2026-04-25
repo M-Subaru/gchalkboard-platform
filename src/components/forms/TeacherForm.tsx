@@ -121,7 +121,10 @@ export default function TeacherForm() {
 
     try {
       const formData = new FormData()
-      Object.entries(data).forEach(([k, v]) => formData.append(k, String(v)))
+      const { first_name, last_name, ...rest } = data
+      formData.append('first_name', first_name)
+      formData.append('last_name', last_name)
+      Object.entries(rest).forEach(([k, v]) => formData.append(k, String(v)))
       formData.append('cv', cvFiles[0])
       formData.append('photo', photoFiles[0])
       additionalFiles.forEach((f) => formData.append('additional', f))
@@ -163,8 +166,11 @@ export default function TeacherForm() {
         <h3 className="text-sm font-semibold uppercase tracking-widest text-[var(--gc-green)] mb-5"
           style={{ fontFamily: 'Outfit, sans-serif' }}>Personal Details</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <Field label="Full Name *" error={errors.full_name?.message}>
-            <input {...register('full_name')} placeholder="Jane Smith" className={inputCls} />
+          <Field label="First Name *" error={errors.first_name?.message}>
+            <input {...register('first_name')} placeholder="Jane" className={inputCls} />
+          </Field>
+          <Field label="Last Name *" error={errors.last_name?.message}>
+            <input {...register('last_name')} placeholder="Smith" className={inputCls} />
           </Field>
           <Field label="Email Address *" error={errors.email?.message}>
             <input {...register('email')} type="email" placeholder="jane@example.com" className={inputCls} />

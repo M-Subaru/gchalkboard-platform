@@ -13,7 +13,8 @@ export async function POST(req: NextRequest) {
 
     // --- Validate text fields ---
     const raw = {
-      full_name: formData.get('full_name'),
+      first_name: formData.get('first_name'),
+      last_name: formData.get('last_name'),
       email: formData.get('email'),
       phone: formData.get('phone'),
       current_location: formData.get('current_location'),
@@ -33,6 +34,7 @@ export async function POST(req: NextRequest) {
     }
 
     const data = parsed.data
+    const full_name = `${data.first_name} ${data.last_name}`
 
     // --- Files ---
     const cvFile = formData.get('cv') as File | null
@@ -76,7 +78,7 @@ export async function POST(req: NextRequest) {
 
     // Insert DB record
     const { error: dbErr } = await supabase.from('teacher_registrations').insert({
-      full_name: data.full_name,
+      full_name,
       email: data.email,
       phone: data.phone,
       current_location: data.current_location,
@@ -100,21 +102,32 @@ export async function POST(req: NextRequest) {
       from: FROM_ADDRESS,
       to: data.email,
       subject: "We've received your application — Global Chalkboard",
-      html: `<p>Hi ${data.full_name},</p>
-<p>Thank you for registering with Global Chalkboard. We have received your profile and will review it carefully.</p>
-<p>If your experience matches a current or upcoming vacancy, we will be in touch directly — usually within five working days.</p>
-<p>In the meantime, if you have any questions, you can reach us at <a href="mailto:info@gchalkboard.com">info@gchalkboard.com</a>.</p>
-<p>Best regards,<br>The Global Chalkboard Team</p>`,
+      html: `<div style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #1e293b; max-width: 600px;">
+<p style="margin: 0 0 16px;">Hi ${data.first_name},</p>
+<p style="margin: 0 0 16px;">Thank you for registering with Global Chalkboard. We have received your profile and will review it carefully.</p>
+<p style="margin: 0 0 16px;">We review every submission personally. If your experience matches a current or upcoming vacancy, we will be in touch directly — usually within five working days.</p>
+<p style="margin: 0 0 16px;">In the meantime, if you have any questions or want to update your profile, you can reach us at <a href="mailto:info@gchalkboard.com" style="color: #0ea472;">info@gchalkboard.com</a>.</p>
+<p style="margin: 0 0 32px;">We look forward to speaking with you.</p>
+<p style="margin: 0 0 4px; font-weight: bold;">The Global Chalkboard Team</p>
+<div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+  <p style="margin: 0; font-size: 13px; color: #64748b;">
+    Global Chalkboard | UK-Based International Teacher Placement<br>
+    <a href="https://gchalkboard.com" style="color: #0ea472; text-decoration: none;">gchalkboard.com</a>
+    &nbsp;|&nbsp;
+    <a href="mailto:info@gchalkboard.com" style="color: #0ea472; text-decoration: none;">info@gchalkboard.com</a>
+  </p>
+</div>
+</div>`,
     })
 
     // Notify admin
     await resend.emails.send({
       from: FROM_ADDRESS,
       to: getAdminEmails(),
-      subject: `New teacher registration: ${data.full_name}`,
+      subject: `New teacher registration: ${full_name}`,
       html: `<h2>New Teacher Registration</h2>
 <table>
-<tr><td><strong>Name:</strong></td><td>${data.full_name}</td></tr>
+<tr><td><strong>Name:</strong></td><td>${full_name}</td></tr>
 <tr><td><strong>Email:</strong></td><td>${data.email}</td></tr>
 <tr><td><strong>Phone:</strong></td><td>${data.phone}</td></tr>
 <tr><td><strong>Location:</strong></td><td>${data.current_location}</td></tr>

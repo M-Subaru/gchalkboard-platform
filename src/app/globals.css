@@ -112,7 +112,7 @@ html {
 
 /* Utility: text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, var(--gc-green), #0dd4a0);
+  background: linear-gradient(135deg, var(--gc-green) 20%, #0dd4a0 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -129,4 +129,57 @@ html {
     padding-top: 7rem;
     padding-bottom: 7rem;
   }
+}
+
+/* Utility: subtle dot grid background */
+.dot-bg {
+  background-image: radial-gradient(circle, rgba(14,164,114,0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Utility: noise texture on dark sections */
+.noise-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Utility: card hover lift */
+.card-hover {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(14,164,114,0.12), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Animated shiny text keyframe */
+@keyframes shiny-text {
+  0%, 90%, 100% { background-position: calc(-100% - var(--shiny-width)) 0; }
+  30%, 60%      { background-position: calc(100% + var(--shiny-width)) 0; }
+}
+.animate-shiny-text {
+  animation: shiny-text 5s infinite;
+}
+
+/* Utility: green accent top border on cards */
+.card-accent {
+  position: relative;
+}
+.card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(90deg, var(--gc-green), #0dd4a0);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.card-accent:hover::before {
+  opacity: 1;
 }

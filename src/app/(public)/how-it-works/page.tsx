@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { DotPattern } from '@/components/ui/dot-pattern'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -13,17 +14,17 @@ const fadeUp = {
 }
 
 const teacherSteps = [
-  { n: '01', title: 'Register your interest', body: 'Submit your profile, CV, and a professional headshot via our talent pool form. The process takes ten to fifteen minutes.' },
+  { n: '01', title: 'Register your interest', body: 'Submit your profile, CV, and a professional headshot via our talent pool form.' },
   { n: '02', title: 'We review your profile', body: 'We check your qualifications, experience, and whether your background aligns with the kinds of roles we are currently sourcing for.' },
-  { n: '03', title: 'We contact you directly', body: 'If we have a role that fits, we reach out. We explain the school, the location, the package — and ask whether you want to be introduced.' },
+  { n: '03', title: 'We contact you directly', body: 'If we have a role that fits, we reach out. We explain the school, the location, the package and ask whether you want to be introduced.' },
   { n: '04', title: 'Introduction and interviews', body: 'With your consent, we introduce you to the school. They run their own interview process; we are available to advise throughout.' },
-  { n: '05', title: 'Offer, support, and beyond', body: 'Once an offer is made, we help with what we can — questions about the move, the role, the contract. We stay in touch through your first term.' },
+  { n: '05', title: 'Offer, support, and beyond', body: 'Once an offer is made, we help with questions about the move, the role, the contract. We stay in touch through your first term.' },
 ]
 
 const schoolSteps = [
-  { n: '01', title: 'Post your vacancy', body: 'Tell us about the role via our short vacancy form. Role type, curriculum, grade level, contract — the basics. Takes five minutes.' },
-  { n: '02', title: 'We source candidates', body: 'We search our talent pool and, where needed, reach out to our wider network. Every candidate we consider is assessed against your requirements.' },
-  { n: '03', title: 'You receive a shortlist', body: 'We send you a small number of well-matched candidates — typically two to four — with a summary of each. No bulk lists.' },
+  { n: '01', title: 'Post your vacancy', body: 'Tell us about the role via our short vacancy form. Role type, curriculum, grade level, contract. Takes five minutes.' },
+  { n: '02', title: 'We source candidates', body: 'We search our talent pool and, where needed, reach out to our wider network. Every candidate is assessed against your requirements.' },
+  { n: '03', title: 'You receive a shortlist', body: 'We send you a small number of well-matched candidates with a summary of each. You decide who to take forward.' },
   { n: '04', title: 'You interview and decide', body: 'The interviews are yours to run. We are available to advise, answer questions, or help coordinate if needed.' },
   { n: '05', title: 'Placement confirmed', body: 'Once you have made your decision and an offer is accepted, we coordinate the remaining steps and stay involved through the start of term.' },
 ]
@@ -53,8 +54,12 @@ export default function HowItWorksPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-[var(--gc-slate)] pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
+      <section className="relative bg-[var(--gc-slate)] pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden noise-bg">
+        <DotPattern
+          width={22} height={22} cr={1}
+          className="text-white/8 [mask-image:radial-gradient(ellipse_80%_80%_at_30%_50%,black_40%,transparent_100%)]"
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 max-w-3xl">
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={0}
             className="text-xs font-semibold tracking-widest uppercase text-[var(--gc-green)] mb-4"
             style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -67,8 +72,7 @@ export default function HowItWorksPage() {
           </motion.h1>
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
-            A straightforward process for both teachers and schools.
-            No hidden steps, no unnecessary complexity.
+            A straightforward process for teachers and schools. Same steps, same transparency, both sides.
           </motion.p>
         </div>
       </section>
@@ -77,7 +81,7 @@ export default function HowItWorksPage() {
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
+            <div className="flex flex-col">
               <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-10">
                 <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
                   style={{ fontFamily: 'Outfit, sans-serif' }}>For Teachers</p>
@@ -87,7 +91,9 @@ export default function HowItWorksPage() {
                   Free to register. No fees, ever.
                 </p>
               </motion.div>
-              <StepList steps={teacherSteps} />
+              <div className="flex-1">
+                <StepList steps={teacherSteps} />
+              </div>
               <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
                 className="mt-10">
                 <Link href="/talent-pool"
@@ -97,7 +103,7 @@ export default function HowItWorksPage() {
               </motion.div>
             </div>
 
-            <div>
+            <div className="flex flex-col">
               <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-10">
                 <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
                   style={{ fontFamily: 'Outfit, sans-serif' }}>For Schools</p>
@@ -107,7 +113,9 @@ export default function HowItWorksPage() {
                   No upfront fees. Pay on successful placement only.
                 </p>
               </motion.div>
-              <StepList steps={schoolSteps} />
+              <div className="flex-1">
+                <StepList steps={schoolSteps} />
+              </div>
               <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
                 className="mt-10">
                 <Link href="/post-vacancy"
@@ -141,8 +149,12 @@ export default function HowItWorksPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[var(--gc-green)] py-16">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
+      <section className="relative bg-[var(--gc-green)] py-16 overflow-hidden noise-bg">
+        <DotPattern
+          width={24} height={24} cr={1}
+          className="text-white/10 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black_40%,transparent_100%)]"
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 text-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3"
               style={{ fontFamily: 'Outfit, sans-serif' }}>Questions about the process?</h2>

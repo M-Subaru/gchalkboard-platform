@@ -1,7 +1,8 @@
 import { z } from 'zod'
 
 export const teacherSchema = z.object({
-  full_name: z.string().min(2, 'Full name is required'),
+  first_name: z.string().min(1, 'First name is required'),
+  last_name: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().min(7, 'Phone number is required'),
   current_location: z.enum(['UK', 'Gulf', 'Other'], {

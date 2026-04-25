@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Users, Search, BadgeCheck, HeartHandshake } from 'lucide-react'
+import { DotPattern } from '@/components/ui/dot-pattern'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -30,8 +31,12 @@ export default function ForSchoolsPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-[var(--gc-slate)] pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
+      <section className="relative bg-[var(--gc-slate)] pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden noise-bg">
+        <DotPattern
+          width={22} height={22} cr={1}
+          className="text-white/8 [mask-image:radial-gradient(ellipse_80%_80%_at_30%_50%,black_40%,transparent_100%)]"
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 max-w-3xl">
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={0}
             className="text-xs font-semibold tracking-widest uppercase text-[var(--gc-green)] mb-4"
             style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -70,13 +75,13 @@ export default function ForSchoolsPage() {
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="max-w-xl mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>What you get</h2>
-            <p className="mt-3 text-[var(--gc-muted)]">We work with a limited number of schools at a time. That is by design.</p>
+            <p className="mt-3 text-[var(--gc-muted)]">We focus on quality of match, not volume of candidates.</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {whatWeOffer.map(({ icon: Icon, title, body }, i) => (
               <motion.div key={title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
-                className="flex gap-4 p-6 rounded-xl border border-[var(--gc-green-light)]">
-                <div className="w-10 h-10 rounded-full bg-[var(--gc-green-light)] flex items-center justify-center flex-shrink-0">
+                className="flex gap-4 p-6 rounded-xl border border-[var(--gc-green-light)] bg-white card-hover card-accent">
+                <div className="w-10 h-10 rounded-full bg-[var(--gc-green-light)] flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Icon size={18} className="text-[#0ea472]" />
                 </div>
                 <div>
@@ -118,10 +123,13 @@ export default function ForSchoolsPage() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="max-w-xl mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>The process</h2>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
-              <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}>
-                <span className="block text-5xl font-bold text-[var(--gc-green-light)] mb-3 leading-none select-none" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.n}</span>
+              <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="relative bg-white rounded-xl border border-[var(--gc-green-light)] p-6 card-hover card-accent">
+                <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--gc-green-light)] mb-4">
+                  <span className="text-xs font-bold text-[var(--gc-green)]" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.n}</span>
+                </div>
                 <h3 className="font-semibold text-[var(--gc-slate)] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.title}</h3>
                 <p className="text-sm text-[var(--gc-muted)] leading-relaxed">{step.body}</p>
               </motion.div>
@@ -131,8 +139,12 @@ export default function ForSchoolsPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[var(--gc-green)] py-16">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
+      <section className="relative bg-[var(--gc-green)] py-16 overflow-hidden noise-bg">
+        <DotPattern
+          width={24} height={24} cr={1}
+          className="text-white/10 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black_40%,transparent_100%)]"
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 text-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>Ready to post a vacancy?</h2>
             <p className="text-white/80 text-sm mb-8 max-w-md mx-auto">Tell us what you need and we will start the sourcing process.</p>

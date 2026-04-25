@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Globe, ShieldCheck, HeartHandshake, BookOpen } from 'lucide-react'
+import { DotPattern } from '@/components/ui/dot-pattern'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -13,16 +14,16 @@ const fadeUp = {
 }
 
 const whatWeOffer = [
-  { icon: ShieldCheck, title: 'Free — always', body: 'We charge schools, not teachers. Registering, being matched, and getting placed costs you nothing.' },
+  { icon: ShieldCheck, title: 'Free, always', body: 'We charge schools, not teachers. Registering, being matched, and getting placed costs you nothing.' },
   { icon: Globe, title: 'Gulf region roles', body: 'We work with schools in Saudi Arabia, Kuwait, Qatar, Bahrain and Oman across a range of curricula and subjects.' },
   { icon: HeartHandshake, title: 'Personal matching', body: 'A person reviews your profile and matches you based on your qualifications, experience and preferences. Not an algorithm.' },
-  { icon: BookOpen, title: 'Cultural preparation', body: 'Before you start, we help you understand what to expect — practically and professionally. No surprises.' },
+  { icon: BookOpen, title: 'Preparation and context', body: 'Before you go, we help you understand what to expect from the country, the school and the role. Practical, not generic.' },
 ]
 
 const steps = [
   { n: '01', title: 'Register', body: 'Complete your profile. Upload your CV and a professional photo. Takes around five minutes.' },
   { n: '02', title: 'We review', body: 'We read every submission. If your profile is a strong match for current or upcoming vacancies, we will be in touch directly.' },
-  { n: '03', title: 'Introduction', body: 'We introduce you to the school. You handle your own interviews — we support you through the process.' },
+  { n: '03', title: 'Introduction', body: 'We introduce you to the school. You handle your own interviews. We are available to advise throughout.' },
   { n: '04', title: 'Placement', body: 'Once an offer is agreed, we help with next steps and remain available throughout your first term.' },
 ]
 
@@ -52,7 +53,7 @@ export default function ForTeachersPage() {
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-[var(--gc-muted)] leading-relaxed max-w-xl">
             Moving abroad to teach is a big call. We treat it like one. No mass
-            applications, no chasing — just a straightforward process designed around you.
+            applications, no chasing. A straightforward process designed around you.
           </motion.p>
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={3} className="mt-8">
             <Link href="/talent-pool"
@@ -72,13 +73,13 @@ export default function ForTeachersPage() {
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="max-w-xl mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>What you get</h2>
-            <p className="mt-3 text-[var(--gc-muted)]">We are not a job board. Here is what that actually means for you.</p>
+            <p className="mt-3 text-[var(--gc-muted)]">Here is what working with us actually looks like.</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {whatWeOffer.map(({ icon: Icon, title, body }, i) => (
               <motion.div key={title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
-                className="flex gap-4 p-6 rounded-xl border border-[var(--gc-green-light)] bg-white">
-                <div className="w-10 h-10 rounded-full bg-[var(--gc-green-light)] flex items-center justify-center flex-shrink-0">
+                className="flex gap-4 p-6 rounded-xl border border-[var(--gc-green-light)] bg-white card-hover card-accent">
+                <div className="w-10 h-10 rounded-full bg-[var(--gc-green-light)] flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Icon size={18} className="text-[#0ea472]" />
                 </div>
                 <div>
@@ -130,10 +131,13 @@ export default function ForTeachersPage() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="max-w-xl mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>How it works</h2>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
-              <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}>
-                <span className="block text-5xl font-bold text-[var(--gc-green-light)] mb-3 leading-none select-none" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.n}</span>
+              <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="relative bg-white rounded-xl border border-[var(--gc-green-light)] p-6 card-hover card-accent">
+                <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--gc-green-light)] mb-4">
+                  <span className="text-xs font-bold text-[var(--gc-green)]" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.n}</span>
+                </div>
                 <h3 className="font-semibold text-[var(--gc-slate)] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.title}</h3>
                 <p className="text-sm text-[var(--gc-muted)] leading-relaxed">{step.body}</p>
               </motion.div>
@@ -143,8 +147,12 @@ export default function ForTeachersPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[var(--gc-green)] py-16">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
+      <section className="relative bg-[var(--gc-green)] py-16 overflow-hidden noise-bg">
+        <DotPattern
+          width={24} height={24} cr={1}
+          className="text-white/10 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black_40%,transparent_100%)]"
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 text-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>Ready to register?</h2>
             <p className="text-white/80 text-sm mb-8 max-w-md mx-auto">
