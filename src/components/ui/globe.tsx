@@ -10,7 +10,9 @@ export function Globe({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    let phi = 0.87 // start centred ~50°E (Gulf region)
+    // phi=0 faces the prime meridian (UK/Europe); Gulf is ~50 deg E so it sits
+    // just to the right on the initial view, which is exactly what we want.
+    let phi = 0
     let width = 0
     let isDragging = false
     let lastX = 0
@@ -28,29 +30,22 @@ export function Globe({ className }: { className?: string }) {
       width: width * 2,
       height: width * 2,
       phi,
-      theta: 0.28,
+      theta: 0.25,          // slight southward tilt
       dark: 0,
-      diffuse: 0.5,
+      diffuse: 0.45,
       mapSamples: 16000,
       mapBrightness: 1.1,
       baseColor: [1, 1, 1],
       markerColor: [14 / 255, 164 / 255, 114 / 255],
       glowColor: [0.9, 0.97, 0.95],
-      markers: [
-        { location: [51.5074, -0.1278], size: 0.06 },   // UK
-        { location: [24.7136, 46.6753], size: 0.08 },   // Saudi Arabia
-        { location: [29.3759, 47.9774], size: 0.05 },   // Kuwait
-        { location: [25.2854, 51.531],  size: 0.05 },   // Qatar
-        { location: [26.0667, 50.5577], size: 0.04 },   // Bahrain
-        { location: [23.614, 58.5922],  size: 0.06 },   // Oman
-      ],
+      markers: [],           // no dots — locations listed below the globe
     })
 
     function animate() {
       rafId = requestAnimationFrame(animate)
       if (!isDragging) {
-        phi += 0.003
-        velocity *= 0.95
+        phi += 0.002           // slow auto-rotate eastward
+        velocity *= 0.9
       } else {
         phi += velocity / MOVEMENT_DAMPING
       }
@@ -67,6 +62,7 @@ export function Globe({ className }: { className?: string }) {
     }, 0)
 
     const canvas = canvasRef.current!
+
     const onDown = (clientX: number) => {
       isDragging = true
       lastX = clientX

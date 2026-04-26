@@ -8,6 +8,7 @@ import { NumberTicker } from '@/components/ui/number-ticker'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 import { Globe } from '@/components/ui/globe'
 import { Highlighter } from '@/components/ui/highlighter'
+import { DottedMap } from '@/components/ui/dotted-map'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -83,8 +84,16 @@ export default function HomePage() {
               >
                 Teaching abroad starts
                 <br />with the right{' '}
-                <span className="text-gradient">
-                  <Highlighter action="underline" color="#0ea472" strokeWidth={2} animationDuration={700} iterations={1} isView>
+                <span className="text-[#0ea472]">
+                  <Highlighter
+                    action="underline"
+                    color="#0ea472"
+                    strokeWidth={2.5}
+                    animationDuration={600}
+                    iterations={1}
+                    isView={false}
+                    delay={900}
+                  >
                     introduction
                   </Highlighter>
                 </span>
@@ -126,28 +135,42 @@ export default function HomePage() {
               className="hidden lg:flex flex-col items-center justify-center"
             >
               <div className="relative w-full max-w-[420px]">
-                {/* faint ring behind globe */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-[95%] aspect-square rounded-full border border-[#0ea472]/10" />
                   <div className="absolute w-[75%] aspect-square rounded-full border border-[#0ea472]/10" />
                 </div>
                 <Globe className="w-full" />
               </div>
-              {/* country pills below globe */}
-              <div className="flex flex-wrap justify-center gap-2 mt-2">
-                {['Saudi Arabia', 'Kuwait', 'Qatar', 'Bahrain', 'Oman'].map((c) => (
-                  <span
-                    key={c}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--gc-slate)] bg-white border border-[var(--gc-green-light)] rounded-full px-3 py-1"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0ea472] flex-shrink-0" />
-                    {c}
-                  </span>
-                ))}
+
+              {/* UK → Gulf locations display */}
+              <div className="mt-1 w-full max-w-[380px]">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                      United Kingdom
+                    </span>
+                    <span className="text-[10px] text-[var(--gc-muted)] font-medium bg-[var(--gc-green-light)] rounded px-1.5 py-0.5">Origin</span>
+                  </div>
+                  <div className="flex-1 h-px border-t border-dashed border-[#0ea472]/30" />
+                  <ArrowRight size={12} className="text-[#0ea472] flex-shrink-0" />
+                </div>
+                <div className="grid grid-cols-5 gap-2">
+                  {[
+                    { name: 'Saudi Arabia', short: 'KSA' },
+                    { name: 'Kuwait', short: 'KWT' },
+                    { name: 'Qatar', short: 'QAT' },
+                    { name: 'Bahrain', short: 'BHR' },
+                    { name: 'Oman', short: 'OMN' },
+                  ].map(({ name, short }) => (
+                    <div key={name} className="flex flex-col items-center gap-1 text-center">
+                      <div className="w-8 h-8 rounded-full bg-white border border-[var(--gc-green-light)] flex items-center justify-center shadow-sm">
+                        <span className="text-[9px] font-bold text-[#0ea472]" style={{ fontFamily: 'Outfit, sans-serif' }}>{short}</span>
+                      </div>
+                      <span className="text-[9px] text-[var(--gc-muted)] leading-tight">{name}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p className="text-xs text-[var(--gc-muted)] mt-3 text-center max-w-xs leading-relaxed">
-                Drag to explore. Markers show each country we place in, plus the UK.
-              </p>
             </motion.div>
           </div>
         </div>
@@ -257,10 +280,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ABOUT TEASER */}
-      <section className="section-padding bg-[var(--gc-cream)]">
+      {/* ABOUT TEASER + DOTTED MAP */}
+      <section className="section-padding bg-[var(--gc-cream)] overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: text */}
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[var(--gc-green-light)] mb-6">
                 <Users size={22} className="text-[#0ea472]" />
@@ -275,6 +299,51 @@ export default function HomePage() {
               <Link href="/about" className="inline-flex items-center gap-1.5 mt-8 text-sm font-semibold text-[#0ea472] hover:underline">
                 About Global Chalkboard <ArrowRight size={15} />
               </Link>
+            </motion.div>
+
+            {/* Right: dotted map */}
+            <motion.div
+              variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={1}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden border border-[var(--gc-green-light)] bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold tracking-widest uppercase text-[var(--gc-green)] mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Where we place
+                </p>
+                <DottedMap
+                  width={160}
+                  height={80}
+                  mapSamples={4000}
+                  dotColor="#0ea47220"
+                  markerColor="#0ea472"
+                  dotRadius={0.25}
+                  pulse
+                  markers={[
+                    { lat: 51.5074, lng: -0.1278,  size: 1.2 },   // UK
+                    { lat: 24.7136, lng: 46.6753,  size: 1.4 },   // Saudi Arabia
+                    { lat: 29.3759, lng: 47.9774,  size: 1.0 },   // Kuwait
+                    { lat: 25.2854, lng: 51.531,   size: 1.0 },   // Qatar
+                    { lat: 26.0667, lng: 50.5577,  size: 0.9 },   // Bahrain
+                    { lat: 23.614,  lng: 58.5922,  size: 1.1 },   // Oman
+                  ]}
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {[
+                    { label: 'United Kingdom', tag: 'Origin' },
+                    { label: 'Saudi Arabia' },
+                    { label: 'Kuwait' },
+                    { label: 'Qatar' },
+                    { label: 'Bahrain' },
+                    { label: 'Oman' },
+                  ].map(({ label, tag }) => (
+                    <span key={label} className="inline-flex items-center gap-1.5 text-xs text-[var(--gc-slate)] bg-[var(--gc-cream)] border border-[var(--gc-green-light)] rounded-full px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0ea472] flex-shrink-0" />
+                      {label}
+                      {tag && <span className="text-[10px] text-[var(--gc-muted)]">({tag})</span>}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
