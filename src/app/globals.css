@@ -166,6 +166,20 @@ html {
   animation: shiny-text 5s infinite;
 }
 
+/* Badge shimmer — reliable 200%-width sweep for green pill labels */
+@keyframes shimmer-badge {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.animate-shimmer-badge {
+  background: linear-gradient(90deg, #0ea472 20%, #5eead4 50%, #0ea472 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-badge 3s linear infinite;
+}
+
 /* Utility: green accent top border on cards */
 .card-accent {
   position: relative;
