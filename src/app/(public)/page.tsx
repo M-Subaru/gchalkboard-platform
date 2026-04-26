@@ -84,7 +84,7 @@ export default function HomePage() {
               >
                 Teaching abroad starts
                 <br />with the right{' '}
-                <span className="text-[#0ea472]">
+                <span className="text-gradient">
                   <Highlighter
                     action="underline"
                     color="#0ea472"
@@ -142,32 +142,15 @@ export default function HomePage() {
                 <Globe className="w-full" />
               </div>
 
-              {/* UK → Gulf locations display */}
-              <div className="mt-1 w-full max-w-[380px]">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                      United Kingdom
+              {/* Gulf countries list */}
+              <div className="mt-3 w-full max-w-[380px]">
+                <p className="text-[10px] font-semibold tracking-widest uppercase text-[var(--gc-muted)] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Placing teachers in</p>
+                <div className="flex flex-wrap gap-2">
+                  {['Saudi Arabia', 'Kuwait', 'Qatar', 'Bahrain', 'Oman'].map((country) => (
+                    <span key={country} className="inline-flex items-center gap-1.5 text-xs text-[var(--gc-slate)] bg-white border border-[var(--gc-green-light)] rounded-full px-3 py-1 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0ea472] flex-shrink-0" />
+                      {country}
                     </span>
-                    <span className="text-[10px] text-[var(--gc-muted)] font-medium bg-[var(--gc-green-light)] rounded px-1.5 py-0.5">Origin</span>
-                  </div>
-                  <div className="flex-1 h-px border-t border-dashed border-[#0ea472]/30" />
-                  <ArrowRight size={12} className="text-[#0ea472] flex-shrink-0" />
-                </div>
-                <div className="grid grid-cols-5 gap-2">
-                  {[
-                    { name: 'Saudi Arabia', short: 'KSA' },
-                    { name: 'Kuwait', short: 'KWT' },
-                    { name: 'Qatar', short: 'QAT' },
-                    { name: 'Bahrain', short: 'BHR' },
-                    { name: 'Oman', short: 'OMN' },
-                  ].map(({ name, short }) => (
-                    <div key={name} className="flex flex-col items-center gap-1 text-center">
-                      <div className="w-8 h-8 rounded-full bg-white border border-[var(--gc-green-light)] flex items-center justify-center shadow-sm">
-                        <span className="text-[9px] font-bold text-[#0ea472]" style={{ fontFamily: 'Outfit, sans-serif' }}>{short}</span>
-                      </div>
-                      <span className="text-[9px] text-[var(--gc-muted)] leading-tight">{name}</span>
-                    </div>
                   ))}
                 </div>
               </div>
@@ -316,15 +299,15 @@ export default function HomePage() {
                   mapSamples={4000}
                   dotColor="#0ea47220"
                   markerColor="#0ea472"
-                  dotRadius={0.25}
+                  dotRadius={0.3}
                   pulse
                   markers={[
-                    { lat: 51.5074, lng: -0.1278,  size: 1.2 },   // UK
-                    { lat: 24.7136, lng: 46.6753,  size: 1.4 },   // Saudi Arabia
-                    { lat: 29.3759, lng: 47.9774,  size: 1.0 },   // Kuwait
-                    { lat: 25.2854, lng: 51.531,   size: 1.0 },   // Qatar
-                    { lat: 26.0667, lng: 50.5577,  size: 0.9 },   // Bahrain
-                    { lat: 23.614,  lng: 58.5922,  size: 1.1 },   // Oman
+                    { lat: 51.5074, lng: -0.1278,  size: 3.0 },   // UK
+                    { lat: 24.7136, lng: 46.6753,  size: 3.5 },   // Saudi Arabia
+                    { lat: 29.3759, lng: 47.9774,  size: 2.8 },   // Kuwait
+                    { lat: 25.2854, lng: 51.531,   size: 2.8 },   // Qatar
+                    { lat: 26.0667, lng: 50.5577,  size: 2.5 },   // Bahrain
+                    { lat: 23.614,  lng: 58.5922,  size: 3.0 },   // Oman
                   ]}
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
