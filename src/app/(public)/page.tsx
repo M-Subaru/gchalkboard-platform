@@ -6,6 +6,8 @@ import { ArrowRight, CheckCircle2, GraduationCap, Building2, Users, Sparkles } f
 import { DotPattern } from '@/components/ui/dot-pattern'
 import { NumberTicker } from '@/components/ui/number-ticker'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
+import { Globe } from '@/components/ui/globe'
+import { Highlighter } from '@/components/ui/highlighter'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -81,7 +83,11 @@ export default function HomePage() {
               >
                 Teaching abroad starts
                 <br />with the right{' '}
-                <span className="text-gradient">introduction</span>
+                <span className="text-gradient">
+                  <Highlighter action="underline" color="#0ea472" strokeWidth={2} animationDuration={700} iterations={1} isView>
+                    introduction
+                  </Highlighter>
+                </span>
               </motion.h1>
 
               <motion.p
@@ -114,38 +120,34 @@ export default function HomePage() {
               </motion.p>
             </div>
 
-            {/* Right: countries card */}
+            {/* Right: Globe */}
             <motion.div
               variants={fadeUp} initial="hidden" animate="show" custom={2}
-              className="hidden lg:block"
+              className="hidden lg:flex flex-col items-center justify-center"
             >
-              <div className="bg-white rounded-2xl border border-[var(--gc-green-light)] p-8 shadow-sm">
-                <p className="text-xs font-semibold tracking-widest uppercase text-[var(--gc-green)] mb-5"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}>Where we place</p>
-                <div className="space-y-3">
-                  {[
-                    { country: 'Saudi Arabia', detail: 'British, IB and US curriculum schools' },
-                    { country: 'Kuwait', detail: 'International and bilingual schools' },
-                    { country: 'Qatar', detail: 'British and IB curriculum schools' },
-                    { country: 'Bahrain', detail: 'International schools' },
-                    { country: 'Oman', detail: 'British curriculum schools' },
-                  ].map(({ country, detail }) => (
-                    <div key={country} className="flex items-start gap-3 py-2.5 border-b border-slate-100 last:border-0">
-                      <div className="w-2 h-2 rounded-full bg-[#0ea472] mt-1.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-sm font-semibold text-[var(--gc-slate)]"
-                          style={{ fontFamily: 'Outfit, sans-serif' }}>{country}</p>
-                        <p className="text-xs text-[var(--gc-muted)] mt-0.5">{detail}</p>
-                      </div>
-                    </div>
-                  ))}
+              <div className="relative w-full max-w-[420px]">
+                {/* faint ring behind globe */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-[95%] aspect-square rounded-full border border-[#0ea472]/10" />
+                  <div className="absolute w-[75%] aspect-square rounded-full border border-[#0ea472]/10" />
                 </div>
-                <div className="mt-6 pt-5 border-t border-slate-100">
-                  <p className="text-xs text-[var(--gc-muted)] leading-relaxed">
-                    Packages typically include tax-free salary, accommodation, flights and healthcare.
-                  </p>
-                </div>
+                <Globe className="w-full" />
               </div>
+              {/* country pills below globe */}
+              <div className="flex flex-wrap justify-center gap-2 mt-2">
+                {['Saudi Arabia', 'Kuwait', 'Qatar', 'Bahrain', 'Oman'].map((c) => (
+                  <span
+                    key={c}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--gc-slate)] bg-white border border-[var(--gc-green-light)] rounded-full px-3 py-1"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0ea472] flex-shrink-0" />
+                    {c}
+                  </span>
+                ))}
+              </div>
+              <p className="text-xs text-[var(--gc-muted)] mt-3 text-center max-w-xs leading-relaxed">
+                Drag to explore. Markers show each country we place in, plus the UK.
+              </p>
             </motion.div>
           </div>
         </div>
