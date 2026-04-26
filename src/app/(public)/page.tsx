@@ -296,17 +296,17 @@ export default function HomePage() {
                   width={160}
                   height={80}
                   mapSamples={5000}
-                  dotColor="#0ea47270"
+                  dotColor="#94a3b880"
                   markerColor="#0ea472"
                   dotRadius={0.6}
                   pulse
                   markers={[
-                    { lat: 51.5074, lng: -0.1278,  size: 1.3 },   // UK
-                    { lat: 24.7136, lng: 46.6753,  size: 1.5 },   // Saudi Arabia
-                    { lat: 29.3759, lng: 47.9774,  size: 1.2 },   // Kuwait
-                    { lat: 25.2854, lng: 51.531,   size: 1.2 },   // Qatar
-                    { lat: 26.0667, lng: 50.5577,  size: 1.1 },   // Bahrain
-                    { lat: 23.614,  lng: 58.5922,  size: 1.3 },   // Oman
+                    { lat: 51.5074, lng: -0.1278,  size: 0.8 },   // UK
+                    { lat: 24.7136, lng: 46.6753,  size: 0.9 },   // Saudi Arabia
+                    { lat: 29.3759, lng: 47.9774,  size: 0.7 },   // Kuwait
+                    { lat: 25.2854, lng: 51.531,   size: 0.7 },   // Qatar
+                    { lat: 26.0667, lng: 50.5577,  size: 0.7 },   // Bahrain
+                    { lat: 23.614,  lng: 58.5922,  size: 0.8 },   // Oman
                   ]}
                 />
                 <div className="mt-4 flex flex-wrap gap-2">

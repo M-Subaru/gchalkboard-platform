@@ -10,9 +10,10 @@ export function Globe({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    // phi=0 faces the Americas. Gulf region (~50°E) is at roughly phi=2.1.
-    // Starting there so the globe opens centred on the Middle East / Gulf.
-    let phi = 2.1
+    // cobe's phi=0 faces the prime meridian (0°E / UK / Africa).
+    // Each radian = 57.3° of longitude. Gulf region is at ~50°E.
+    // phi = 50 / 57.3 = 0.87 centres the globe on the Arabian Peninsula / Gulf.
+    let phi = 0.87
     let width = 0
     let isDragging = false
     let lastX = 0
