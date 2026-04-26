@@ -11,24 +11,38 @@ interface Props {
 export default function NotesEditor({ table, id, initialNotes }: Props) {
   const [notes, setNotes] = useState(initialNotes ?? '')
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
+  const [errorDetail, setErrorDetail] = useState<string | null>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   function handleChange(value: string) {
     setNotes(value)
     setSaveState('idle')
+    setErrorDetail(null)
     if (timerRef.current) clearTimeout(timerRef.current)
     timerRef.current = setTimeout(() => save(value), 1500)
   }
 
   async function save(value: string) {
     setSaveState('saving')
-    const res = await fetch(`/api/admin/update-record`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ table, id, field: 'notes', value }),
-    })
-    setSaveState(res.ok ? 'saved' : 'error')
-    if (res.ok) setTimeout(() => setSaveState('idle'), 2000)
+    setErrorDetail(null)
+    try {
+      const res = await fetch(`/api/admin/update-record`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ table, id, field: 'notes', value }),
+      })
+      if (res.ok) {
+        setSaveState('saved')
+        setTimeout(() => setSaveState('idle'), 2000)
+      } else {
+        const body = await res.json().catch(() => ({}))
+        setErrorDetail(body.error ?? `HTTP ${res.status}`)
+        setSaveState('error')
+      }
+    } catch (err) {
+      setErrorDetail(err instanceof Error ? err.message : 'Network error')
+      setSaveState('error')
+    }
   }
 
   return (
@@ -37,7 +51,11 @@ export default function NotesEditor({ table, id, initialNotes }: Props) {
         <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Notes</label>
         {saveState === 'saving' && <span className="text-xs text-slate-400">Saving...</span>}
         {saveState === 'saved' && <span className="text-xs text-emerald-600">Saved</span>}
-        {saveState === 'error' && <span className="text-xs text-red-500">Save failed</span>}
+        {saveState === 'error' && (
+          <span className="text-xs text-red-500 text-right max-w-[160px]">
+            {errorDetail ? errorDetail : 'Save failed'}
+          </span>
+        )}
       </div>
       <textarea
         value={notes}

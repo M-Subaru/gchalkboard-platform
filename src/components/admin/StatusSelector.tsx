@@ -13,21 +13,34 @@ interface Props {
 export default function StatusSelector({ table, id, currentStatus, options }: Props) {
   const [status, setStatus] = useState(currentStatus)
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
+  const [errorDetail, setErrorDetail] = useState<string | null>(null)
 
   async function handleChange(value: string) {
     setStatus(value)
     setSaveState('saving')
-    const res = await fetch('/api/admin/update-record', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ table, id, field: 'status', value }),
-    })
-    setSaveState(res.ok ? 'saved' : 'error')
-    if (res.ok) setTimeout(() => setSaveState('idle'), 2000)
+    setErrorDetail(null)
+    try {
+      const res = await fetch('/api/admin/update-record', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ table, id, field: 'status', value }),
+      })
+      if (res.ok) {
+        setSaveState('saved')
+        setTimeout(() => setSaveState('idle'), 2000)
+      } else {
+        const body = await res.json().catch(() => ({}))
+        setErrorDetail(body.error ?? `HTTP ${res.status}`)
+        setSaveState('error')
+      }
+    } catch (err) {
+      setErrorDetail(err instanceof Error ? err.message : 'Network error')
+      setSaveState('error')
+    }
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 flex-wrap">
       <select
         value={status}
         onChange={e => handleChange(e.target.value)}
@@ -39,7 +52,11 @@ export default function StatusSelector({ table, id, currentStatus, options }: Pr
       <StatusBadge status={status} />
       {saveState === 'saving' && <span className="text-xs text-slate-400">Saving...</span>}
       {saveState === 'saved' && <span className="text-xs text-emerald-600">Saved</span>}
-      {saveState === 'error' && <span className="text-xs text-red-500">Failed</span>}
+      {saveState === 'error' && (
+        <span className="text-xs text-red-500">
+          Failed{errorDetail ? `: ${errorDetail}` : ''}
+        </span>
+      )}
     </div>
   )
 }

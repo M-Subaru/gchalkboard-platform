@@ -66,10 +66,13 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 rounded-full border border-[#0ea472]/30 bg-[#0ea472]/8 px-4 py-1.5 mb-6"
               >
                 <Sparkles size={13} className="text-[#0ea472]" />
-                <span className="text-xs font-semibold tracking-widest uppercase text-[#0ea472]"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <AnimatedShinyText
+                  shimmerWidth={110}
+                  className="text-xs font-semibold tracking-widest uppercase text-[#0ea472]/80 bg-gradient-to-r from-transparent via-[#0ea472] via-50% to-transparent"
+                  style={{ fontFamily: 'Outfit, sans-serif' }}
+                >
                   UK Teachers. Gulf Schools.
-                </span>
+                </AnimatedShinyText>
               </motion.div>
 
               <motion.h1
