@@ -8,6 +8,14 @@ compatibility_flags = ["nodejs_compat"]
 directory = ".open-next/assets"
 binding = "ASSETS"
 
+[[kv_namespaces]]
+binding = "NEXT_INC_CACHE_KV"
+id = "d30e8d763958429a8282a58dbacc582e"
+
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "globalchalkboard"
+
 [vars]
 NEXT_PUBLIC_SUPABASE_URL = "https://dnzxvqbjmlkfbanqznpc.supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuenh2cWJqbWxrZmJhbnF6bnBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMjEyNjIsImV4cCI6MjA5MjU5NzI2Mn0.HN-oh4ls6LD6n0u7M45GRjt0g6DaZwdGSZy0pKy0ank"
