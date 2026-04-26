@@ -61,22 +61,29 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: FROM_ADDRESS,
       to: data.email,
-      subject: 'Vacancy received — Global Chalkboard',
-      html: `<p>Dear ${data.contact_person},</p>
-<p>Thank you for submitting your vacancy to Global Chalkboard. We have received the details for the
-<strong>${data.job_title}</strong> position at ${data.school_name}.</p>
-<p>We will review your vacancy and begin identifying the best-matched candidates from our talent pool.
-We will be in touch directly with an update.</p>
-<p>If you have any questions in the meantime, please do not hesitate to contact us at
-<a href="mailto:info@gchalkboard.com">info@gchalkboard.com</a>.</p>
-<p>Best regards,<br>The Global Chalkboard Team</p>`,
+      subject: 'Vacancy received: Global Chalkboard',
+      html: `<div style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #1e293b; max-width: 600px;">
+<p style="margin: 0 0 16px;">Dear ${data.contact_person},</p>
+<p style="margin: 0 0 16px;">Thank you for submitting your vacancy to Global Chalkboard. We have received the details for the <strong>${data.job_title}</strong> position at ${data.school_name}.</p>
+<p style="margin: 0 0 16px;">We will review your vacancy and begin identifying the best-matched candidates from our talent pool. We will be in touch directly with an update.</p>
+<p style="margin: 0 0 32px;">If you have any questions in the meantime, you are always welcome to reach us at <a href="mailto:info@gchalkboard.com" style="color: #0ea472;">info@gchalkboard.com</a>.</p>
+<p style="margin: 0 0 4px; font-weight: bold;">The Global Chalkboard Team</p>
+<div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+  <p style="margin: 0; font-size: 13px; color: #64748b;">
+    Global Chalkboard | UK-Based International Teacher Placement<br>
+    <a href="https://gchalkboard.com" style="color: #0ea472; text-decoration: none;">gchalkboard.com</a>
+    &nbsp;|&nbsp;
+    <a href="mailto:info@gchalkboard.com" style="color: #0ea472; text-decoration: none;">info@gchalkboard.com</a>
+  </p>
+</div>
+</div>`,
     })
 
     // Admin notification
     await resend.emails.send({
       from: FROM_ADDRESS,
       to: getAdminEmails(),
-      subject: `New school vacancy: ${data.school_name} — ${data.job_title}`,
+      subject: `New school vacancy: ${data.school_name}, ${data.job_title}`,
       html: `<h2>New School Vacancy</h2>
 <table>
 <tr><td><strong>School:</strong></td><td>${data.school_name}</td></tr>

@@ -25,7 +25,7 @@ export default function NotesEditor({ table, id, initialNotes }: Props) {
     const res = await fetch(`/api/admin/update-record`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ table, id, fields: { notes: value } }),
+      body: JSON.stringify({ table, id, field: 'notes', value }),
     })
     setSaveState(res.ok ? 'saved' : 'error')
     if (res.ok) setTimeout(() => setSaveState('idle'), 2000)

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, GraduationCap, Building2, Users, Sparkles } from 'lucide-react'
 import { DotPattern } from '@/components/ui/dot-pattern'
 import { NumberTicker } from '@/components/ui/number-ticker'
+import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },

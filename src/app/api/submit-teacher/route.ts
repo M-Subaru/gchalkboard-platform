@@ -64,13 +64,14 @@ export async function POST(req: NextRequest) {
       .upload(photoPath, await photoFile.arrayBuffer(), { contentType: photoFile.type, upsert: false })
     if (photoErr) throw photoErr
 
-    // Upload additional docs
+    // Upload additional docs — preserve sanitised original filename
     const additionalPaths: string[] = []
     for (let i = 0; i < Math.min(additionalFileEntries.length, 5); i++) {
       const f = additionalFileEntries[i]
       if (f.size > MAX_ADDITIONAL_SIZE) continue
-      const ext = f.name.split('.').pop()
-      const path = `${emailSlug}/${timestamp}/additional_${i}.${ext}`
+      // Sanitise: keep alphanumeric, dots, hyphens; replace everything else with underscore; truncate
+      const safeName = f.name.replace(/[^a-zA-Z0-9._-]/g, '_').replace(/_+/g, '_').substring(0, 80)
+      const path = `${emailSlug}/${timestamp}/${i + 1}_${safeName}`
       const { error: addErr } = await supabase.storage.from('teacher-docs')
         .upload(path, await f.arrayBuffer(), { contentType: f.type, upsert: false })
       if (!addErr) additionalPaths.push(path)
@@ -101,11 +102,11 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: FROM_ADDRESS,
       to: data.email,
-      subject: "We've received your application — Global Chalkboard",
+      subject: "We've received your application: Global Chalkboard",
       html: `<div style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #1e293b; max-width: 600px;">
 <p style="margin: 0 0 16px;">Hi ${data.first_name},</p>
 <p style="margin: 0 0 16px;">Thank you for registering with Global Chalkboard. We have received your profile and will review it carefully.</p>
-<p style="margin: 0 0 16px;">We review every submission personally. We will be in touch directly when we find a match that suits you — and we will keep you updated throughout the process.</p>
+<p style="margin: 0 0 16px;">We review every submission personally. We will be in touch directly when we find a match that suits you, and we will keep you updated throughout the process.</p>
 <p style="margin: 0 0 16px;">If you have any questions in the meantime, you are always welcome to reach us at <a href="mailto:info@gchalkboard.com" style="color: #0ea472;">info@gchalkboard.com</a>.</p>
 <p style="margin: 0 0 32px;">We look forward to speaking with you.</p>
 <p style="margin: 0 0 4px; font-weight: bold;">The Global Chalkboard Team</p>

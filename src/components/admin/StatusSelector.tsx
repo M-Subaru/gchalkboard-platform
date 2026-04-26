@@ -20,7 +20,7 @@ export default function StatusSelector({ table, id, currentStatus, options }: Pr
     const res = await fetch('/api/admin/update-record', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ table, id, fields: { status: value } }),
+      body: JSON.stringify({ table, id, field: 'status', value }),
     })
     setSaveState(res.ok ? 'saved' : 'error')
     if (res.ok) setTimeout(() => setSaveState('idle'), 2000)

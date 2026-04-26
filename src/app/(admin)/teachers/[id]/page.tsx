@@ -59,8 +59,14 @@ export default async function TeacherDetailPage({ params }: Props) {
         .from('teacher-docs')
         .createSignedUrl(path, 3600)
       if (data?.signedUrl) {
-        const ext = path.split('.').pop() ?? 'file'
-        additionalDocUrls.push({ name: `Additional document ${i + 1} (.${ext})`, url: data.signedUrl })
+        // Extract filename from path, strip numeric prefix if present (e.g. "1_My CV.pdf")
+        const rawName = path.split('/').pop() ?? ''
+        const match = rawName.match(/^\d+_(.+)$/)
+        const ext = (rawName.split('.').pop() ?? 'file').toUpperCase()
+        const displayName = match
+          ? match[1].replace(/\.[^.]+$/, '').replace(/_/g, ' ')
+          : `Document ${i + 1}`
+        additionalDocUrls.push({ name: `${displayName} (${ext})`, url: data.signedUrl })
       }
     }
   }

@@ -8,11 +8,10 @@ const ALLOWED_FIELDS = ['notes', 'status'] as const
 const schema = z.object({
   table: z.enum(ALLOWED_TABLES),
   id: z.string().uuid(),
-  fields: z.record(z.enum(ALLOWED_FIELDS), z.string()),
+  field: z.enum(ALLOWED_FIELDS),
+  value: z.string(),
 })
 
-// Auth is enforced by middleware on /admin/* pages.
-// This route only updates status/notes — no sensitive data exposed.
 export async function PATCH(request: Request) {
   let body: unknown
   try { body = await request.json() } catch {
@@ -24,20 +23,21 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 422 })
   }
 
-  const { table, id, fields } = parsed.data
+  const { table, id, field, value } = parsed.data
 
-  // Use supabase-js directly with service role key — no cookies needed, bypasses RLS
   const adminSupabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     { auth: { persistSession: false, autoRefreshToken: false } }
   )
+
   const { error } = await adminSupabase
     .from(table)
-    .update({ ...fields })
+    .update({ [field]: value })
     .eq('id', id)
 
   if (error) {
+    console.error('[update-record]', error)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
