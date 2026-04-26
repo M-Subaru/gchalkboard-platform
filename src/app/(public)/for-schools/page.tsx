@@ -14,7 +14,7 @@ const fadeUp = {
 }
 
 const whatWeOffer = [
-  { icon: Search, title: 'Pre-screened candidates', body: 'Every teacher we send you has been verified — qualifications checked, references reviewed, and assessed for suitability before introduction.' },
+  { icon: Search, title: 'Pre-screened candidates', body: 'Every teacher we send you has been verified: qualifications checked, references reviewed, and assessed for suitability before introduction.' },
   { icon: Users, title: 'Focused shortlisting', body: 'We do not flood your inbox. You receive a select number of well-matched candidates, each chosen with care for your specific requirements.' },
   { icon: BadgeCheck, title: 'No upfront fees', body: 'You pay nothing until a placement is made. Our fee is agreed in advance and applies only on a successful hire.' },
   { icon: HeartHandshake, title: 'Support through the process', body: 'We remain involved from introduction through to the start of term. If anything needs attention, we are here to support you.' },

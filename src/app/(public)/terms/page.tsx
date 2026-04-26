@@ -116,7 +116,7 @@ export default function TermsPage() {
 
           <h2>9. Intellectual property</h2>
           <p>
-            All content on this website — including text, design, and code — is owned by or
+            All content on this website, including text, design, and code, is owned by or
             licensed to Global Chalkboard. You may not reproduce, copy, or redistribute any part
             of it without our written permission. This does not affect your right to share links
             to our pages.

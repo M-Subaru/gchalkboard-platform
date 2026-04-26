@@ -49,7 +49,7 @@ export default function AboutPage() {
                 on both sides of the teacher-placement process.
               </p>
               <p className="text-[var(--gc-muted)] leading-relaxed mb-4">
-                Recruitment services in this space have become increasingly generic — treating teachers
+                Recruitment services in this space have become increasingly generic, treating teachers
                 as one of many and schools as a transaction. We set out to do better: to build something
                 grounded in relationships, genuine knowledge of what Gulf schools need, and a real
                 understanding of what moving abroad to teach actually involves.
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 {[
                   'We verify qualifications and references carefully, supporting teachers and schools equally through every introduction.',
                   'Schools receive a focused shortlist of well-matched candidates, selected with care.',
-                  'Teachers pay nothing — our fee comes from the school on successful placement.',
+                  'Teachers pay nothing. Our fee comes from the school on successful placement.',
                   'We stay involved through offer and start of term, not just introduction.',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 text-sm text-[var(--gc-muted)] leading-relaxed">
@@ -127,7 +127,7 @@ export default function AboutPage() {
               },
               {
                 label: 'Support that continues',
-                body: 'We do not step away after an introduction is made. If questions arise, we are reachable and actively involved — for both the teacher and the school.',
+                body: 'We do not step away after an introduction is made. If questions arise, we are reachable and actively involved, for both the teacher and the school.',
               },
             ].map(({ label, body }, i) => (
               <motion.div key={label} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}>

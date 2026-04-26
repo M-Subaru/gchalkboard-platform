@@ -56,7 +56,7 @@ export default async function TeacherDetailPage({ params }: Props) {
     for (let i = 0; i < teacher.additional_doc_paths.length; i++) {
       const path = teacher.additional_doc_paths[i]
       const { data } = await supabase.storage
-        .from('teacher-additional-docs')
+        .from('teacher-docs')
         .createSignedUrl(path, 3600)
       if (data?.signedUrl) {
         const ext = path.split('.').pop() ?? 'file'

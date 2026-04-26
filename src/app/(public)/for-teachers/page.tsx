@@ -112,7 +112,7 @@ export default function ForTeachersPage() {
               className="bg-[var(--gc-slate)] rounded-2xl p-8 text-white">
               <h3 className="text-lg font-bold mb-5" style={{ fontFamily: 'Outfit, sans-serif' }}>The Gulf region at a glance</h3>
               <p className="text-sm text-white/70 leading-relaxed mb-4">
-                Gulf schools — particularly those following the British or IB curriculum — are
+                Gulf schools, particularly those following the British or IB curriculum, are
                 actively recruiting qualified UK teachers. Packages typically include tax-free salary,
                 accommodation, flights and healthcare.
               </p>

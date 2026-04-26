@@ -29,11 +29,12 @@ export async function PATCH(request: Request) {
   // Use supabase-js directly with service role key — no cookies needed, bypasses RLS
   const adminSupabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { persistSession: false, autoRefreshToken: false } }
   )
   const { error } = await adminSupabase
     .from(table)
-    .update({ ...fields, updated_at: new Date().toISOString() })
+    .update({ ...fields })
     .eq('id', id)
 
   if (error) {

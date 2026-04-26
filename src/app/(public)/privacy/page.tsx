@@ -120,13 +120,13 @@ export default function PrivacyPage() {
           <h2>7. Your rights</h2>
           <p>Under UK GDPR, you have the right to:</p>
           <ul>
-            <li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
-            <li><strong>Correction</strong> — ask us to correct inaccurate or incomplete data</li>
-            <li><strong>Erasure</strong> — ask us to delete your data, subject to our legitimate interests</li>
-            <li><strong>Restriction</strong> — ask us to limit how we use your data while a dispute is resolved</li>
-            <li><strong>Portability</strong> — request your data in a structured, machine-readable format</li>
-            <li><strong>Objection</strong> — object to processing based on legitimate interests</li>
-            <li><strong>Withdraw consent</strong> — at any time, for processing based on consent</li>
+            <li><strong>Access:</strong> request a copy of the personal data we hold about you</li>
+            <li><strong>Correction:</strong> ask us to correct inaccurate or incomplete data</li>
+            <li><strong>Erasure:</strong> ask us to delete your data, subject to our legitimate interests</li>
+            <li><strong>Restriction:</strong> ask us to limit how we use your data while a dispute is resolved</li>
+            <li><strong>Portability:</strong> request your data in a structured, machine-readable format</li>
+            <li><strong>Objection:</strong> object to processing based on legitimate interests</li>
+            <li><strong>Withdraw consent:</strong> at any time, for processing based on consent</li>
           </ul>
           <p>
             To exercise any of these rights, email{' '}
