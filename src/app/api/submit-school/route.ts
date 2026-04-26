@@ -18,9 +18,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Coerce types before validation
+    // visa_sponsorship stays as string ('true'/'false') — schema expects z.enum(['true','false'])
     const coerced = {
       ...raw,
-      visa_sponsorship: raw.visa_sponsorship === 'true' || raw.visa_sponsorship === true,
       gdpr_consent:
         raw.gdpr_consent === 'true' || raw.gdpr_consent === true || raw.gdpr_consent === 'on',
     }
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
       contract_type: data.contract_type,
       salary_range: data.salary_range ?? null,
       start_date: data.start_date,
-      visa_sponsorship: data.visa_sponsorship,
+      visa_sponsorship: data.visa_sponsorship === 'true',
       additional_requirements: data.additional_requirements ?? null,
       gdpr_consent: data.gdpr_consent,
       status: 'New',
@@ -65,9 +65,9 @@ export async function POST(req: NextRequest) {
       html: `<p>Dear ${data.contact_person},</p>
 <p>Thank you for submitting your vacancy to Global Chalkboard. We have received the details for the
 <strong>${data.job_title}</strong> position at ${data.school_name}.</p>
-<p>We will review your vacancy and begin identifying suitable candidates from our talent pool.
-You can expect to hear from us within three to five working days.</p>
-<p>If you have any questions in the meantime, please contact us at
+<p>We will review your vacancy and begin identifying the best-matched candidates from our talent pool.
+We will be in touch directly with an update.</p>
+<p>If you have any questions in the meantime, please do not hesitate to contact us at
 <a href="mailto:info@gchalkboard.com">info@gchalkboard.com</a>.</p>
 <p>Best regards,<br>The Global Chalkboard Team</p>`,
     })

@@ -147,7 +147,10 @@ export default async function TeacherDetailPage({ params }: Props) {
                   {doc.name}
                 </a>
               ))}
-              {additionalDocUrls.length === 0 && !cvUrl && (
+              {cvUrl && additionalDocUrls.length === 0 && (
+                <span className="text-sm text-slate-400 self-center">No additional documents uploaded</span>
+              )}
+              {!cvUrl && additionalDocUrls.length === 0 && (
                 <span className="text-sm text-slate-400">No documents uploaded</span>
               )}
             </div>

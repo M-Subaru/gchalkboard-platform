@@ -15,38 +15,36 @@ const fadeUp = {
 
 const teacherSteps = [
   { n: '01', title: 'Register your interest', body: 'Submit your profile, CV, and a professional headshot via our talent pool form.' },
-  { n: '02', title: 'We review your profile', body: 'We check your qualifications, experience, and whether your background aligns with the kinds of roles we are currently sourcing for.' },
-  { n: '03', title: 'We contact you directly', body: 'If we have a role that fits, we reach out. We explain the school, the location, the package and ask whether you want to be introduced.' },
+  { n: '02', title: 'We review your profile', body: 'We look at your qualifications, experience, and teaching background to identify the best opportunities for you.' },
+  { n: '03', title: 'We contact you directly', body: 'When we find a role that suits you, we reach out. We explain the school, the location, the package and ask whether you want to be introduced.' },
   { n: '04', title: 'Introduction and interviews', body: 'With your consent, we introduce you to the school. They run their own interview process; we are available to advise throughout.' },
-  { n: '05', title: 'Offer, support, and beyond', body: 'Once an offer is made, we help with questions about the move, the role, the contract. We stay in touch through your first term.' },
+  { n: '05', title: 'Offer, support, and beyond', body: 'Once an offer is made, we help with questions about the move, the role, the contract. We stay in touch and remain available to both you and the school.' },
 ]
 
 const schoolSteps = [
-  { n: '01', title: 'Post your vacancy', body: 'Tell us about the role via our short vacancy form. Role type, curriculum, grade level, contract. Takes five minutes.' },
+  { n: '01', title: 'Post your vacancy', body: 'Tell us about the role via our short vacancy form. Role type, curriculum, grade level, contract.' },
   { n: '02', title: 'We source candidates', body: 'We search our talent pool and, where needed, reach out to our wider network. Every candidate is assessed against your requirements.' },
-  { n: '03', title: 'You receive a shortlist', body: 'We send you a small number of well-matched candidates with a summary of each. You decide who to take forward.' },
-  { n: '04', title: 'You interview and decide', body: 'The interviews are yours to run. We are available to advise, answer questions, or help coordinate if needed.' },
+  { n: '03', title: 'You receive a shortlist', body: 'We send you a select number of well-matched candidates with a summary of each. You decide who to take forward.' },
+  { n: '04', title: 'You run your own process', body: 'The selection process is yours to run. We are available to advise, answer questions, or help coordinate if needed.' },
   { n: '05', title: 'Placement confirmed', body: 'Once you have made your decision and an offer is accepted, we coordinate the remaining steps and stay involved through the start of term.' },
 ]
 
-function StepList({ steps }: { steps: typeof teacherSteps }) {
+function StepRow({ step, index, isLast }: { step: { n: string; title: string; body: string }; index: number; isLast: boolean }) {
   return (
-    <ol className="relative border-l border-[var(--gc-green-light)] ml-4 space-y-10">
-      {steps.map((step, i) => (
-        <motion.li key={step.n} variants={fadeUp} initial="hidden" whileInView="show"
-          viewport={{ once: true }} custom={i}
-          className="pl-8 relative">
-          <span className="absolute -left-4 top-0 w-8 h-8 rounded-full bg-white border-2 border-[#0ea472]
-            flex items-center justify-center text-xs font-bold text-[#0ea472]"
-            style={{ fontFamily: 'Outfit, sans-serif' }}>
-            {i + 1}
-          </span>
-          <h3 className="font-semibold text-[var(--gc-slate)] mb-1.5"
-            style={{ fontFamily: 'Outfit, sans-serif' }}>{step.title}</h3>
-          <p className="text-sm text-[var(--gc-muted)] leading-relaxed">{step.body}</p>
-        </motion.li>
-      ))}
-    </ol>
+    <div className="relative pl-10 pb-10">
+      <span
+        className="absolute left-0 top-0 w-8 h-8 rounded-full bg-white border-2 border-[#0ea472]
+          flex items-center justify-center text-xs font-bold text-[#0ea472] z-10"
+        style={{ fontFamily: 'Outfit, sans-serif' }}>
+        {index + 1}
+      </span>
+      {!isLast && (
+        <div className="absolute left-4 top-8 bottom-0 w-px bg-[var(--gc-green-light)]" />
+      )}
+      <h3 className="font-semibold text-[var(--gc-slate)] mb-1.5 pt-0.5"
+        style={{ fontFamily: 'Outfit, sans-serif' }}>{step.title}</h3>
+      <p className="text-sm text-[var(--gc-muted)] leading-relaxed">{step.body}</p>
+    </div>
   )
 }
 
@@ -72,30 +70,44 @@ export default function HowItWorksPage() {
           </motion.h1>
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
-            A straightforward process for teachers and schools. Same steps, same transparency, both sides.
+            The same care, the same transparency, for teachers and schools alike.
           </motion.p>
         </div>
       </section>
 
-      {/* FOR TEACHERS */}
+      {/* FOR TEACHERS + FOR SCHOOLS — aligned step-by-step */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="flex flex-col">
-              <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-10">
-                <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}>For Teachers</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}>Your route to a Gulf school</h2>
-                <p className="mt-3 text-[var(--gc-muted)] text-sm leading-relaxed">
-                  Free to register. No fees, ever.
-                </p>
-              </motion.div>
-              <div className="flex-1">
-                <StepList steps={teacherSteps} />
-              </div>
+
+          {/* Column headers */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-12">
+            <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
+                style={{ fontFamily: 'Outfit, sans-serif' }}>For Teachers</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]"
+                style={{ fontFamily: 'Outfit, sans-serif' }}>Your route to a Gulf school</h2>
+              <p className="mt-2 text-[var(--gc-muted)] text-sm">Free to register. No fees, ever.</p>
+            </motion.div>
+            <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={1}>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
+                style={{ fontFamily: 'Outfit, sans-serif' }}>For Schools</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]"
+                style={{ fontFamily: 'Outfit, sans-serif' }}>Filling your vacancy</h2>
+              <p className="mt-2 text-[var(--gc-muted)] text-sm">No upfront fees. Pay on successful placement only.</p>
+            </motion.div>
+          </div>
+
+          {/* Paired steps — same row = same number */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-16">
+            <div>
+              {teacherSteps.map((step, i) => (
+                <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show"
+                  viewport={{ once: true }} custom={i}>
+                  <StepRow step={step} index={i} isLast={i === teacherSteps.length - 1} />
+                </motion.div>
+              ))}
               <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-                className="mt-10">
+                className="mt-2 mb-10 lg:mb-0">
                 <Link href="/talent-pool"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0ea472] text-white font-semibold text-sm hover:bg-[#0b8a60] transition-colors duration-150">
                   Join the talent pool <ArrowRight size={15} />
@@ -103,21 +115,15 @@ export default function HowItWorksPage() {
               </motion.div>
             </div>
 
-            <div className="flex flex-col">
-              <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-10">
-                <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}>For Schools</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}>Filling your vacancy</h2>
-                <p className="mt-3 text-[var(--gc-muted)] text-sm leading-relaxed">
-                  No upfront fees. Pay on successful placement only.
-                </p>
-              </motion.div>
-              <div className="flex-1">
-                <StepList steps={schoolSteps} />
-              </div>
+            <div>
+              {schoolSteps.map((step, i) => (
+                <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show"
+                  viewport={{ once: true }} custom={i}>
+                  <StepRow step={step} index={i} isLast={i === schoolSteps.length - 1} />
+                </motion.div>
+              ))}
               <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-                className="mt-10">
+                className="mt-2">
                 <Link href="/post-vacancy"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0ea472] text-white font-semibold text-sm hover:bg-[#0b8a60] transition-colors duration-150">
                   Post a vacancy <ArrowRight size={15} />
@@ -125,6 +131,7 @@ export default function HowItWorksPage() {
               </motion.div>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -135,14 +142,15 @@ export default function HowItWorksPage() {
             <h2 className="text-xl font-semibold text-[var(--gc-slate)] mb-4"
               style={{ fontFamily: 'Outfit, sans-serif' }}>A few things worth knowing</h2>
             <p className="text-[var(--gc-muted)] leading-relaxed mb-4">
-              We cannot guarantee a placement. If we take on a teacher, it is because we believe we can
-              match them — but school needs change, timelines shift, and decisions are ultimately made
-              by the schools themselves.
+              We cannot guarantee a placement. School needs change, timelines shift, and decisions
+              are ultimately made by the schools and teachers themselves. But we will always keep
+              you informed, we will always be honest with you, and we will support both sides
+              throughout the process.
             </p>
             <p className="text-[var(--gc-muted)] leading-relaxed">
-              What we can guarantee is that we will be honest with you throughout.
               If something is not working, we will say so. If a match is not right, we will tell you
-              rather than push it through.
+              rather than push it through. Our commitment is to an outcome that genuinely works for
+              both the teacher and the school.
             </p>
           </motion.div>
         </div>

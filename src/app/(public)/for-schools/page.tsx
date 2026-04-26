@@ -15,15 +15,15 @@ const fadeUp = {
 
 const whatWeOffer = [
   { icon: Search, title: 'Pre-screened candidates', body: 'Every teacher we send you has been verified — qualifications checked, references reviewed, and assessed for suitability before introduction.' },
-  { icon: Users, title: 'Shortlisting only', body: 'We do not flood your inbox. You receive a small number of well-matched candidates, not a bulk list to sort through yourself.' },
+  { icon: Users, title: 'Focused shortlisting', body: 'We do not flood your inbox. You receive a select number of well-matched candidates, each chosen with care for your specific requirements.' },
   { icon: BadgeCheck, title: 'No upfront fees', body: 'You pay nothing until a placement is made. Our fee is agreed in advance and applies only on a successful hire.' },
-  { icon: HeartHandshake, title: 'Support through the process', body: 'We remain involved from introduction through to the start of term. If anything goes wrong early on, we work to resolve it.' },
+  { icon: HeartHandshake, title: 'Support through the process', body: 'We remain involved from introduction through to the start of term. If anything needs attention, we are here to support you.' },
 ]
 
 const steps = [
-  { n: '01', title: 'Post your vacancy', body: 'Tell us about the role, curriculum, and what you need. Takes five minutes.' },
+  { n: '01', title: 'Post your vacancy', body: 'Tell us about the role, curriculum, and what you need.' },
   { n: '02', title: 'We source and screen', body: 'We identify candidates from our talent pool and conduct our own assessment before making any introduction.' },
-  { n: '03', title: 'You interview', body: 'We send you a shortlist. You run your own interviews — we are available to advise throughout.' },
+  { n: '03', title: 'You interview', body: 'We send you a shortlist. You run your own selection process. We are available to advise throughout.' },
   { n: '04', title: 'Offer and placement', body: 'Once you have made your decision, we help coordinate the offer and keep things on track through to the start date.' },
 ]
 
@@ -51,7 +51,7 @@ export default function ForSchoolsPage() {
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
             We do the sourcing, vetting and shortlisting. You do the interviews and make the
-            decision. No upfront fees, no bulk candidate dumps.
+            decision. No upfront fees, and a focused shortlist of well-matched candidates.
           </motion.p>
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={3} className="mt-8 flex flex-wrap gap-4">
             <Link href="/post-vacancy"
@@ -106,11 +106,10 @@ export default function ForSchoolsPage() {
               </p>
               <p className="text-[var(--gc-muted)] leading-relaxed mb-6">
                 Our fee is agreed with you before we begin and applies only when a candidate you
-                select from our shortlist takes up the post. If a placement does not work out
-                within the first term, we discuss options with you directly.
+                select from our shortlist takes up the post.
               </p>
               <p className="text-sm text-[var(--gc-muted)]">
-                To discuss specifics, <Link href="/contact" className="text-[#0ea472] underline underline-offset-2">get in touch</Link> — we are happy to have a conversation before you post a vacancy.
+                To discuss specifics, <Link href="/contact" className="text-[#0ea472] underline underline-offset-2">get in touch</Link>. We are happy to have a conversation before you post a vacancy.
               </p>
             </motion.div>
           </div>

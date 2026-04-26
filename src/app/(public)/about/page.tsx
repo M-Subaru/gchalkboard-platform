@@ -26,12 +26,13 @@ export default function AboutPage() {
           <motion.h1 variants={fadeUp} initial="hidden" animate="show" custom={1}
             className="text-4xl sm:text-5xl font-bold text-white leading-tight"
             style={{ fontFamily: 'Outfit, sans-serif' }}>
-            A small team with one clear focus
+            Diligence and quality, on both sides
           </motion.h1>
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
             We connect UK-qualified teachers with international schools across the Gulf region.
-            That is all we do, and we do it properly.
+            Every placement is handled with care, and we hold ourselves to the same standard
+            for teachers and schools alike.
           </motion.p>
         </div>
       </section>
@@ -44,19 +45,18 @@ export default function AboutPage() {
               <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)] mb-5"
                 style={{ fontFamily: 'Outfit, sans-serif' }}>Who we are</h2>
               <p className="text-[var(--gc-muted)] leading-relaxed mb-4">
-                Global Chalkboard is a UK-based recruitment service founded by two people with
-                direct experience on both sides of the teacher-placement process.
+                Global Chalkboard is a UK-based recruitment service founded with direct experience
+                on both sides of the teacher-placement process.
               </p>
               <p className="text-[var(--gc-muted)] leading-relaxed mb-4">
-                We have seen the generic job boards. We have seen the agencies that treat
-                teachers as numbers and schools as invoices. We wanted to do something different —
-                a service built around relationships and a genuine understanding of what Gulf
-                schools need and what teachers moving abroad actually face.
+                Recruitment services in this space have become increasingly generic — treating teachers
+                as one of many and schools as a transaction. We set out to do better: to build something
+                grounded in relationships, genuine knowledge of what Gulf schools need, and a real
+                understanding of what moving abroad to teach actually involves.
               </p>
               <p className="text-[var(--gc-muted)] leading-relaxed">
-                We work with a small number of schools at a time. We take on teachers whose
-                backgrounds we can actually match to roles. We would rather do fewer things well
-                than many things poorly.
+                We would rather do fewer things well than many things poorly. Every teacher and school
+                we work with receives our full attention.
               </p>
             </motion.div>
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={1}
@@ -65,8 +65,8 @@ export default function AboutPage() {
                 style={{ fontFamily: 'Outfit, sans-serif' }}>Our approach</h3>
               <ul className="space-y-3">
                 {[
-                  'We check qualifications and references before making any introduction.',
-                  'Schools receive a shortlist of two to four candidates, not a bulk dump.',
+                  'We verify qualifications and references carefully, supporting teachers and schools equally through every introduction.',
+                  'Schools receive a focused shortlist of well-matched candidates, selected with care.',
                   'Teachers pay nothing — our fee comes from the school on successful placement.',
                   'We stay involved through offer and start of term, not just introduction.',
                 ].map((item, i) => (
@@ -89,15 +89,16 @@ export default function AboutPage() {
               style={{ fontFamily: 'Outfit, sans-serif' }}>Why the Gulf?</h2>
             <p className="text-[var(--gc-muted)] leading-relaxed mb-4">
               International schools across Saudi Arabia, Kuwait, Qatar, Bahrain and Oman have grown
-              significantly over the past decade. Many follow British or international curricula and
-              actively recruit UK-trained teachers — particularly those with QTS and classroom
-              experience at GCSE or A-Level equivalent.
+              significantly over the past decade. These schools are deeply committed to the educational
+              journeys of their students, enriching their programmes with British and international
+              curricula, and actively seeking UK-trained teachers — particularly those with QTS and
+              classroom experience at GCSE or A-Level equivalent.
             </p>
             <p className="text-[var(--gc-muted)] leading-relaxed mb-4">
               For teachers, these roles typically come with a tax-free salary,
               accommodation, flights and healthcare. The cost of living is low relative
               to the package. It is not for everyone, but for teachers who go in with clear
-              expectations, the experience tends to leave a mark.
+              expectations, the experience tends to leave a lasting positive impact.
             </p>
             <p className="text-[var(--gc-muted)] leading-relaxed">
               We focus on this region because we know it. We understand the schools, the curricula,
@@ -118,15 +119,15 @@ export default function AboutPage() {
             {[
               {
                 label: 'Not a job board',
-                body: 'We do not publish listings and wait for applications. We proactively match teachers from our talent pool to specific vacancies. Every introduction is deliberate.',
+                body: 'We do not publish listings and wait for applications. We proactively match teachers from our talent pool to specific vacancies. Every introduction is deliberate and considered.',
               },
               {
                 label: 'Honest about fit',
-                body: 'If a teacher is not right for a role, we say so. If a school cannot offer what a teacher needs, we are upfront about that too. Mismatches waste everyone\'s time.',
+                body: 'We work with both teachers and schools as partners, giving each side an honest picture throughout. Good outcomes come from good matches, and we take that responsibility seriously.',
               },
               {
                 label: 'Support that continues',
-                body: 'We do not disappear after the placement fee lands. If something comes up in the first weeks, we are still reachable and still involved.',
+                body: 'We do not step away after an introduction is made. If questions arise, we are reachable and actively involved — for both the teacher and the school.',
               },
             ].map(({ label, body }, i) => (
               <motion.div key={label} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}>
@@ -146,7 +147,7 @@ export default function AboutPage() {
               style={{ fontFamily: 'Outfit, sans-serif' }}>Ready to get started?</h2>
             <p className="text-white/80 text-sm mb-8 max-w-md mx-auto">
               Whether you are a teacher exploring options or a school with a vacancy, we are
-              straightforward to reach.
+              happy to talk.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/talent-pool"

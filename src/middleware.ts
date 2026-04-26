@@ -44,7 +44,11 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // Only run middleware on admin routes — public pages and API routes handle auth themselves
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/dashboard/:path*',
+    '/teachers/:path*',
+    '/schools/:path*',
+    '/login',
   ],
 }

@@ -15,11 +15,9 @@ export const schoolSchema = z.object({
   contract_type: z.enum(['Full-Time', 'Part-Time', 'Fixed Term'], {
     error: 'Please select a contract type',
   }),
-  salary_range: z.string().optional(),
+  salary_range: z.string().min(1, 'Please provide a salary range'),
   start_date: z.string().min(1, 'Please select a start date'),
-  visa_sponsorship: z.boolean({
-    error: 'Please indicate visa sponsorship availability',
-  }),
+  visa_sponsorship: z.enum(['true', 'false'], { error: 'Please indicate visa sponsorship availability' }),
   additional_requirements: z.string().optional(),
   gdpr_consent: z.literal(true, { error: 'You must consent to proceed' }),
 })

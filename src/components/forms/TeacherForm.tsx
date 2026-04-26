@@ -95,17 +95,21 @@ const selectCls = inputCls + " cursor-pointer"
 
 export default function TeacherForm() {
   const [submitState, setSubmitState] = useState<SubmitState>('idle')
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const [cvFiles, setCvFiles] = useState<File[]>([])
   const [photoFiles, setPhotoFiles] = useState<File[]>([])
   const [additionalFiles, setAdditionalFiles] = useState<File[]>([])
-
+  const [locationOther, setLocationOther] = useState('')
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<TeacherFormValues>({
     resolver: zodResolver(teacherSchema),
   })
+
+  const currentLocation = watch('current_location')
 
   const onSubmit = async (data: TeacherFormValues) => {
     if (cvFiles.length === 0) {
@@ -118,23 +122,38 @@ export default function TeacherForm() {
     }
 
     setSubmitState('loading')
+    setSubmitError(null)
 
     try {
       const formData = new FormData()
       const { first_name, last_name, ...rest } = data
       formData.append('first_name', first_name)
       formData.append('last_name', last_name)
-      Object.entries(rest).forEach(([k, v]) => formData.append(k, String(v)))
+      // If "Other" location, append the typed value instead
+      Object.entries(rest).forEach(([k, v]) => {
+        if (k === 'current_location' && v === 'Other') {
+          formData.append(k, locationOther || 'Other')
+        } else {
+          formData.append(k, String(v))
+        }
+      })
       formData.append('cv', cvFiles[0])
       formData.append('photo', photoFiles[0])
-      additionalFiles.forEach((f) => formData.append('additional', f))
+      // Only include real File objects with content
+      additionalFiles
+        .filter((f): f is File => f instanceof File && f.size > 0)
+        .forEach((f) => formData.append('additional', f))
 
       const res = await fetch('/api/submit-teacher', { method: 'POST', body: formData })
 
-      if (!res.ok) throw new Error('Submission failed')
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}))
+        throw new Error(json.error || 'Submission failed')
+      }
       setSubmitState('success')
-    } catch {
+    } catch (err: unknown) {
       setSubmitState('error')
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again or email us at info@gchalkboard.com.')
     }
   }
 
@@ -152,8 +171,8 @@ export default function TeacherForm() {
           Application received
         </h2>
         <p className="text-[var(--gc-muted)] max-w-sm mx-auto">
-          Thank you for registering. We will review your profile and be in touch if your
-          experience matches a current or upcoming vacancy. Check your email for a confirmation.
+          Thank you for registering. We will review your profile and be in touch directly.
+          A confirmation has been sent to your email.
         </p>
       </motion.div>
     )
@@ -167,13 +186,13 @@ export default function TeacherForm() {
           style={{ fontFamily: 'Outfit, sans-serif' }}>Personal Details</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <Field label="First Name *" error={errors.first_name?.message}>
-            <input {...register('first_name')} placeholder="Jane" className={inputCls} />
+            <input {...register('first_name')} placeholder="Sara" className={inputCls} />
           </Field>
           <Field label="Last Name *" error={errors.last_name?.message}>
-            <input {...register('last_name')} placeholder="Smith" className={inputCls} />
+            <input {...register('last_name')} placeholder="Hassan" className={inputCls} />
           </Field>
           <Field label="Email Address *" error={errors.email?.message}>
-            <input {...register('email')} type="email" placeholder="jane@example.com" className={inputCls} />
+            <input {...register('email')} type="email" placeholder="sara@example.com" className={inputCls} />
           </Field>
           <Field label="Phone Number *" error={errors.phone?.message}>
             <input {...register('phone')} type="tel" placeholder="+44 7700 900000" className={inputCls} />
@@ -186,6 +205,16 @@ export default function TeacherForm() {
               <option value="Other">Other</option>
             </select>
           </Field>
+          {currentLocation === 'Other' && (
+            <Field label="Please specify location">
+              <input
+                value={locationOther}
+                onChange={e => setLocationOther(e.target.value)}
+                placeholder="e.g. Australia, Canada..."
+                className={inputCls}
+              />
+            </Field>
+          )}
         </div>
       </div>
 
@@ -211,7 +240,7 @@ export default function TeacherForm() {
           <Field label="QTS Status *" error={errors.qts_status?.message}>
             <select {...register('qts_status', { setValueAs: (v) => v === 'true' })} className={selectCls}>
               <option value="">Select...</option>
-              <option value="true">Yes — I hold QTS</option>
+              <option value="true">Yes, I hold QTS</option>
               <option value="false">No</option>
             </select>
           </Field>
@@ -222,7 +251,7 @@ export default function TeacherForm() {
             <input {...register('preferred_grade_levels')} placeholder="e.g. Year 7-11, KS4" className={inputCls} />
           </Field>
           <Field label="Earliest Available Start Date *" error={errors.earliest_start_date?.message}>
-            <input {...register('earliest_start_date')} type="date" className={inputCls} />
+            <input {...register('earliest_start_date')} type="date" min={new Date().toISOString().split('T')[0]} className={inputCls} />
           </Field>
         </div>
       </div>
@@ -241,7 +270,7 @@ export default function TeacherForm() {
           />
           <FileDropZone
             label="Professional Headshot *"
-            hint="Clear photo of your face — JPG, PNG or WebP, max 2 MB"
+            hint="Clear photo of your face. JPG, PNG or WebP, max 2 MB"
             accept="image/jpeg,image/png,image/webp"
             files={photoFiles}
             onChange={setPhotoFiles}
@@ -250,7 +279,7 @@ export default function TeacherForm() {
         <div className="mt-5">
           <FileDropZone
             label="Additional Documents (optional)"
-            hint="References, certificates, DBS — up to 5 files, 5 MB each"
+            hint="References, certificates, DBS. Up to 5 files, 5 MB each"
             accept=".pdf,.doc,.docx,image/*"
             multiple
             files={additionalFiles}
@@ -272,7 +301,7 @@ export default function TeacherForm() {
             I consent to Global Chalkboard storing and processing my personal information for
             recruitment purposes. I understand my data will be held securely and used only to
             match me with relevant school vacancies.{' '}
-            <a href="/privacy" className="text-[#0ea472] underline underline-offset-2">Privacy Policy</a>.
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-[#0ea472] underline underline-offset-2">Privacy Policy</a>.
           </label>
         </div>
         {errors.gdpr_consent && (
@@ -286,9 +315,9 @@ export default function TeacherForm() {
       <AnimatePresence>
         {submitState === 'error' && (
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="text-sm text-destructive flex items-center gap-2">
-            <AlertCircle size={15} />
-            Something went wrong. Please try again or email us at info@gchalkboard.com.
+            className="text-sm text-destructive flex items-start gap-2">
+            <AlertCircle size={15} className="flex-shrink-0 mt-0.5" />
+            {submitError || 'Something went wrong. Please try again or email us at info@gchalkboard.com.'}
           </motion.p>
         )}
       </AnimatePresence>

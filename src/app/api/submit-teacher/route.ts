@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
       if (f.size > MAX_ADDITIONAL_SIZE) continue
       const ext = f.name.split('.').pop()
       const path = `${emailSlug}/${timestamp}/additional_${i}.${ext}`
-      const { error: addErr } = await supabase.storage.from('teacher-additional-docs')
+      const { error: addErr } = await supabase.storage.from('teacher-docs')
         .upload(path, await f.arrayBuffer(), { contentType: f.type, upsert: false })
       if (!addErr) additionalPaths.push(path)
     }
@@ -105,8 +105,8 @@ export async function POST(req: NextRequest) {
       html: `<div style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #1e293b; max-width: 600px;">
 <p style="margin: 0 0 16px;">Hi ${data.first_name},</p>
 <p style="margin: 0 0 16px;">Thank you for registering with Global Chalkboard. We have received your profile and will review it carefully.</p>
-<p style="margin: 0 0 16px;">We review every submission personally. If your experience matches a current or upcoming vacancy, we will be in touch directly — usually within five working days.</p>
-<p style="margin: 0 0 16px;">In the meantime, if you have any questions or want to update your profile, you can reach us at <a href="mailto:info@gchalkboard.com" style="color: #0ea472;">info@gchalkboard.com</a>.</p>
+<p style="margin: 0 0 16px;">We review every submission personally. We will be in touch directly when we find a match that suits you — and we will keep you updated throughout the process.</p>
+<p style="margin: 0 0 16px;">If you have any questions in the meantime, you are always welcome to reach us at <a href="mailto:info@gchalkboard.com" style="color: #0ea472;">info@gchalkboard.com</a>.</p>
 <p style="margin: 0 0 32px;">We look forward to speaking with you.</p>
 <p style="margin: 0 0 4px; font-weight: bold;">The Global Chalkboard Team</p>
 <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
@@ -143,6 +143,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('[submit-teacher]', err)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+    const msg = err instanceof Error ? err.message : String(err)
+    return NextResponse.json({ error: msg }, { status: 500 })
   }
 }

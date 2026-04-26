@@ -37,7 +37,7 @@ export default function SchoolForm() {
     formState: { errors },
   } = useForm<SchoolFormValues>({
     resolver: zodResolver(schoolSchema),
-    defaultValues: { visa_sponsorship: undefined },
+    defaultValues: { visa_sponsorship: undefined as unknown as 'true' | 'false' },
   })
 
   async function onSubmit(values: SchoolFormValues) {
@@ -72,7 +72,7 @@ export default function SchoolForm() {
         </h2>
         <p className="text-[var(--gc-muted)] max-w-md leading-relaxed">
           Thank you. We have received your vacancy and will begin reviewing candidates from our talent pool.
-          You can expect to hear from us within three to five working days.
+          We will be in touch promptly with next steps.
         </p>
         <p className="text-sm text-[var(--gc-muted)]">
           Questions? Email us at{' '}
@@ -161,12 +161,13 @@ export default function SchoolForm() {
             <FieldError msg={errors.contract_type?.message} />
           </div>
           <div>
-            <label className={labelBase}>Salary Range <span className="text-gray-400 font-normal">(optional)</span></label>
+            <label className={labelBase}>Salary Range *</label>
             <input {...register('salary_range')} placeholder="e.g. SAR 8,000–10,000/month" className={inputBase} />
+            <FieldError msg={errors.salary_range?.message} />
           </div>
           <div>
             <label className={labelBase}>Desired Start Date *</label>
-            <input {...register('start_date')} type="date" className={inputBase} />
+            <input {...register('start_date')} type="date" min={new Date().toISOString().split('T')[0]} className={inputBase} />
             <FieldError msg={errors.start_date?.message} />
           </div>
         </div>
@@ -181,12 +182,12 @@ export default function SchoolForm() {
             <label className={labelBase}>Visa Sponsorship Available *</label>
             <div className="flex items-center gap-6 mt-1">
               <label className="flex items-center gap-2 text-sm cursor-pointer text-[var(--gc-slate)]">
-                <input {...register('visa_sponsorship', { setValueAs: v => v === 'true' })}
+                <input {...register('visa_sponsorship')}
                   type="radio" value="true" className="accent-[#0ea472]" />
                 Yes
               </label>
               <label className="flex items-center gap-2 text-sm cursor-pointer text-[var(--gc-slate)]">
-                <input {...register('visa_sponsorship', { setValueAs: v => v === 'true' })}
+                <input {...register('visa_sponsorship')}
                   type="radio" value="false" className="accent-[#0ea472]" />
                 No
               </label>
@@ -240,7 +241,7 @@ export default function SchoolForm() {
           )}
         </button>
         <p className="mt-3 text-xs text-[var(--gc-muted)]">
-          We will review your vacancy and be in touch within three to five working days.
+          We will review your vacancy and be in touch directly.
         </p>
       </motion.section>
     </form>

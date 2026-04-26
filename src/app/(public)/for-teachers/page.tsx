@@ -16,15 +16,15 @@ const fadeUp = {
 const whatWeOffer = [
   { icon: ShieldCheck, title: 'Free, always', body: 'We charge schools, not teachers. Registering, being matched, and getting placed costs you nothing.' },
   { icon: Globe, title: 'Gulf region roles', body: 'We work with schools in Saudi Arabia, Kuwait, Qatar, Bahrain and Oman across a range of curricula and subjects.' },
-  { icon: HeartHandshake, title: 'Personal matching', body: 'A person reviews your profile and matches you based on your qualifications, experience and preferences. Not an algorithm.' },
-  { icon: BookOpen, title: 'Preparation and context', body: 'Before you go, we help you understand what to expect from the country, the school and the role. Practical, not generic.' },
+  { icon: HeartHandshake, title: 'Personal matching', body: 'Your profile is reviewed carefully and matched based on your qualifications, experience and preferences. Every introduction is deliberate.' },
+  { icon: BookOpen, title: 'Preparation and context', body: 'Before you go, we help you understand what to expect from the country, the school and the role.' },
 ]
 
 const steps = [
-  { n: '01', title: 'Register', body: 'Complete your profile. Upload your CV and a professional photo. Takes around five minutes.' },
-  { n: '02', title: 'We review', body: 'We read every submission. If your profile is a strong match for current or upcoming vacancies, we will be in touch directly.' },
+  { n: '01', title: 'Register', body: 'Complete your profile and upload your CV and a professional photo.' },
+  { n: '02', title: 'We review', body: 'We read every submission. When we find a strong match for you among current or upcoming vacancies, we will be in touch directly.' },
   { n: '03', title: 'Introduction', body: 'We introduce you to the school. You handle your own interviews. We are available to advise throughout.' },
-  { n: '04', title: 'Placement', body: 'Once an offer is agreed, we help with next steps and remain available throughout your first term.' },
+  { n: '04', title: 'Placement', body: 'Once an offer is agreed, we help with the next steps and remain available to both you and the school.' },
 ]
 
 const whoItsFor = [
@@ -52,8 +52,8 @@ export default function ForTeachersPage() {
           </motion.h1>
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-[var(--gc-muted)] leading-relaxed max-w-xl">
-            Moving abroad to teach is a big call. We treat it like one. No mass
-            applications, no chasing. A straightforward process designed around you.
+            Moving abroad to teach is a big call. We treat it like one. A straightforward,
+            considered process built around what you need.
           </motion.p>
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={3} className="mt-8">
             <Link href="/talent-pool"
@@ -156,7 +156,7 @@ export default function ForTeachersPage() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>Ready to register?</h2>
             <p className="text-white/80 text-sm mb-8 max-w-md mx-auto">
-              Join the talent pool and we will be in touch if your profile matches a current or upcoming vacancy.
+              Join the talent pool and we will review your profile. We will be in touch when we find the right match for you.
             </p>
             <Link href="/talent-pool"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-[#0ea472] font-semibold text-sm hover:bg-white/90 transition-colors duration-150">

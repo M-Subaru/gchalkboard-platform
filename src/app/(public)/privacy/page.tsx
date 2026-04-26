@@ -23,7 +23,10 @@ export default function PrivacyPage() {
       </section>
 
       <section className="section-padding">
-        <div className="container mx-auto px-4 sm:px-6 max-w-3xl prose prose-slate prose-sm sm:prose-base">
+        <div className="container mx-auto px-4 sm:px-6 max-w-3xl prose prose-slate prose-base leading-relaxed
+          prose-h2:text-xl prose-h2:font-bold prose-h2:mt-10 prose-h2:mb-4
+          prose-h3:text-base prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-2
+          prose-p:text-[var(--gc-muted)] prose-li:text-[var(--gc-muted)] prose-p:mb-4">
 
           <h2>1. Who we are</h2>
           <p>

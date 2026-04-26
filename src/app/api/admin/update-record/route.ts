@@ -1,4 +1,4 @@
-import { createAdminClient } from '@/lib/supabase/server'
+import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
@@ -26,7 +26,11 @@ export async function PATCH(request: Request) {
 
   const { table, id, fields } = parsed.data
 
-  const adminSupabase = await createAdminClient()
+  // Use supabase-js directly with service role key — no cookies needed, bypasses RLS
+  const adminSupabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
   const { error } = await adminSupabase
     .from(table)
     .update({ ...fields, updated_at: new Date().toISOString() })

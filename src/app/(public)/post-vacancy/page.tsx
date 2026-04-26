@@ -2,7 +2,7 @@ import SchoolForm from '@/components/forms/SchoolForm'
 
 export const metadata = {
   title: 'Post a Vacancy — Global Chalkboard',
-  description: 'Tell us about your opening and we will source pre-screened UK teachers from our talent pool.',
+  description: 'Tell us about your opening and we will identify the best-matched UK teachers from our talent pool.',
 }
 
 export default function PostVacancyPage() {
@@ -20,7 +20,7 @@ export default function PostVacancyPage() {
             Post a Vacancy
           </h1>
           <p className="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
-            Fill in the details below and we will get started on sourcing candidates from our talent pool.
+            Fill in the details below and we will begin identifying the right candidates from our talent pool.
             No upfront fees — you only pay when a placement is made.
           </p>
         </div>
@@ -44,22 +44,22 @@ export default function PostVacancyPage() {
                     </li>
                     <li className="flex gap-2">
                       <span className="font-semibold text-[#0ea472] flex-shrink-0">2.</span>
-                      We search our talent pool for suitable candidates.
+                      We identify the best-matched candidates from our talent pool.
                     </li>
                     <li className="flex gap-2">
                       <span className="font-semibold text-[#0ea472] flex-shrink-0">3.</span>
-                      We introduce a small shortlist — typically two to four candidates.
+                      We share a focused shortlist of well-matched candidates.
                     </li>
                     <li className="flex gap-2">
                       <span className="font-semibold text-[#0ea472] flex-shrink-0">4.</span>
-                      You interview and decide. We support throughout.
+                      You run your own selection process. We support throughout.
                     </li>
                   </ol>
                 </div>
                 <div className="p-6 rounded-xl border border-[var(--gc-green-light)]">
                   <p className="text-sm text-[var(--gc-muted)] leading-relaxed">
                     Prefer to speak first?{' '}
-                    <a href="/contact" className="text-[#0ea472] underline underline-offset-2 font-medium">
+                    <a href="/contact" target="_blank" rel="noopener noreferrer" className="text-[#0ea472] underline underline-offset-2 font-medium">
                       Get in touch
                     </a>{' '}
                     and we can walk you through the process before you post.

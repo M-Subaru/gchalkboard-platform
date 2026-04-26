@@ -169,6 +169,7 @@ html {
 /* Utility: green accent top border on cards */
 .card-accent {
   position: relative;
+  overflow: hidden;
 }
 .card-accent::before {
   content: '';

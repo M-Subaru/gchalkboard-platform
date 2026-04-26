@@ -24,7 +24,7 @@ export default function TalentPoolPage() {
             <p className="text-[var(--gc-muted)] leading-relaxed">
               Fill in your details below and upload your CV. We review every submission
               personally. If your profile is a strong match for a current or upcoming vacancy,
-              we will contact you directly — usually within five working days.
+              we will contact you directly.
             </p>
             <p className="mt-3 text-sm text-[var(--gc-muted)]">
               Registration is completely free. Fields marked * are required.

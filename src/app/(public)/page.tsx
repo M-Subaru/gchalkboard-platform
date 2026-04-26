@@ -16,8 +16,8 @@ const fadeUp = {
 }
 
 const steps = [
-  { n: '01', title: 'You tell us what you need', body: 'Teachers register their profile. Schools post a vacancy. Takes about five minutes.' },
-  { n: '02', title: 'We find the right match', body: 'We review every application ourselves. A person looks at your profile, not an algorithm.' },
+  { n: '01', title: 'You tell us what you need', body: 'Teachers register their profile. Schools post a vacancy. Our team reviews every submission personally.' },
+  { n: '02', title: 'We find the right match', body: 'Every submission is reviewed carefully. We match based on qualifications, experience, and the specific needs of both teacher and school.' },
   { n: '03', title: 'We make the introduction', body: 'Once we have a strong match, we introduce teacher and school directly and support both sides through the process.' },
   { n: '04', title: 'You get the outcome you came for', body: 'Teachers start a role abroad. Schools fill a vacancy with a qualified, prepared candidate.' },
 ]
@@ -25,21 +25,20 @@ const steps = [
 const teacherBenefits = [
   'Free, no fees ever',
   'Roles across Saudi Arabia, Kuwait, Qatar, Bahrain and Oman',
-  'Personal matching by a person, not an algorithm',
-  'Practical preparation before you go',
+  'Careful matching based on your qualifications and preferences',
+  'Preparation and context before you go',
 ]
 
 const schoolBenefits = [
   'Pre-screened UK-qualified teachers',
-  'A small shortlist, matched to your requirements',
+  'A focused shortlist, matched to your requirements',
   'No upfront fees, pay on successful placement',
   'Support through offer and onboarding',
 ]
 
 const stats = [
-  { value: 5, suffix: '', label: 'Gulf countries' },
+  { value: 5, suffix: '', label: 'Gulf countries covered' },
   { value: 100, suffix: '%', label: 'UK-qualified teachers' },
-  { value: 2, suffix: '', label: 'admins — you talk to us, not a bot' },
 ]
 
 export default function HomePage() {
@@ -47,12 +46,10 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden bg-[var(--gc-cream)] pt-32 pb-24 md:pt-40 md:pb-32">
-        {/* Dot pattern background */}
         <DotPattern
           width={22} height={22} cr={1}
           className="text-[#0ea472]/15 [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black_40%,transparent_100%)]"
         />
-        {/* Radial glow */}
         <div
           aria-hidden
           className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-[0.05] pointer-events-none"
@@ -63,7 +60,6 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: headline */}
             <div>
-              {/* Animated badge */}
               <motion.div
                 variants={fadeUp} initial="hidden" animate="show" custom={0}
                 className="inline-flex items-center gap-2 rounded-full border border-[#0ea472]/30 bg-[#0ea472]/8 px-4 py-1.5 mb-6"
@@ -90,7 +86,7 @@ export default function HomePage() {
                 className="mt-6 text-lg text-[var(--gc-muted)] leading-relaxed max-w-xl"
               >
                 We connect UK-qualified teachers with international schools across the Gulf region.
-                Personally. No algorithms, no bulk submissions. Careful matching on both sides.
+                Personally. Every match is considered carefully, on both sides.
               </motion.p>
 
               <motion.div
@@ -125,9 +121,9 @@ export default function HomePage() {
                   style={{ fontFamily: 'Outfit, sans-serif' }}>Where we place</p>
                 <div className="space-y-3">
                   {[
-                    { country: 'Saudi Arabia', detail: 'British, IB & US curriculum schools' },
-                    { country: 'Kuwait', detail: 'International & bilingual schools' },
-                    { country: 'Qatar', detail: 'British & IB curriculum schools' },
+                    { country: 'Saudi Arabia', detail: 'British, IB and US curriculum schools' },
+                    { country: 'Kuwait', detail: 'International and bilingual schools' },
+                    { country: 'Qatar', detail: 'British and IB curriculum schools' },
                     { country: 'Bahrain', detail: 'International schools' },
                     { country: 'Oman', detail: 'British curriculum schools' },
                   ].map(({ country, detail }) => (
@@ -155,7 +151,7 @@ export default function HomePage() {
       {/* STATS BAR */}
       <section className="bg-white border-y border-[var(--gc-green-light)] py-8">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto text-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 text-center">
             {stats.map(({ value, suffix, label }, i) => (
               <motion.div key={label} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}>
                 <p className="text-3xl font-bold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -174,7 +170,7 @@ export default function HomePage() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="max-w-xl mb-14">
             <p className="text-xs font-semibold tracking-widest uppercase text-[var(--gc-green)] mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>The Process</p>
             <h2 className="text-3xl md:text-4xl font-bold text-[var(--gc-slate)]" style={{ fontFamily: 'Outfit, sans-serif' }}>How we work</h2>
-            <p className="mt-4 text-[var(--gc-muted)]">No large databases, no blind applications. We handle a small number of placements at a time so we can do each one properly.</p>
+            <p className="mt-4 text-[var(--gc-muted)]">Careful, considered placements. We give each teacher and school the attention they deserve.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -182,9 +178,8 @@ export default function HomePage() {
               <motion.div
                 key={step.n}
                 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
-                className="relative bg-white rounded-xl border border-[var(--gc-green-light)] p-6 card-hover card-accent"
+                className="relative bg-white rounded-xl border border-[var(--gc-green-light)] p-6 card-hover card-accent overflow-hidden"
               >
-                {/* Numbered badge */}
                 <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--gc-green-light)] mb-4">
                   <span className="text-xs font-bold text-[var(--gc-green)]" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.n}</span>
                 </div>
@@ -208,7 +203,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Teachers */}
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={0}
-              className="rounded-2xl bg-white border border-[var(--gc-green-light)] p-8 flex flex-col card-hover card-accent">
+              className="rounded-2xl bg-white border border-[var(--gc-green-light)] p-8 flex flex-col card-hover card-accent overflow-hidden">
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-full bg-[var(--gc-green-light)] flex items-center justify-center flex-shrink-0">
                   <GraduationCap size={20} className="text-[#0ea472]" />
@@ -268,9 +263,9 @@ export default function HomePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--gc-slate)] mb-5" style={{ fontFamily: 'Outfit, sans-serif' }}>How we are different</h2>
               <p className="text-[var(--gc-muted)] leading-relaxed">
                 Global Chalkboard is a UK-based specialist focused entirely on Gulf placements.
-                We keep our numbers manageable so we can give each teacher and school proper
-                attention. Every teacher we work with has been spoken to directly. Every school
-                has been assessed on what they genuinely offer.
+                We prioritise quality over volume, giving each teacher and school the time and attention
+                their situation deserves. Every teacher in our pool is reviewed personally. Every school
+                we work with is one we know well.
               </p>
               <Link href="/about" className="inline-flex items-center gap-1.5 mt-8 text-sm font-semibold text-[#0ea472] hover:underline">
                 About Global Chalkboard <ArrowRight size={15} />
@@ -289,7 +284,7 @@ export default function HomePage() {
         <div className="relative container mx-auto px-4 sm:px-6 text-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Ready to get started?</h2>
-            <p className="text-white/80 mb-8 text-sm">Teachers: register your profile and we will be in touch if we have a match. Schools: post a vacancy and we start the search.</p>
+            <p className="text-white/80 mb-8 text-sm">Teachers: register your profile and we will review your details and be in touch. Schools: post a vacancy and we begin the search.</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/talent-pool" className="px-6 py-3 rounded-lg bg-white text-[#0ea472] font-semibold text-sm hover:bg-white/90 transition-colors duration-150 shadow-sm">Join the Talent Pool</Link>
               <Link href="/post-vacancy" className="px-6 py-3 rounded-lg border border-white text-white font-semibold text-sm hover:bg-white/10 transition-colors duration-150">Post a Vacancy</Link>
