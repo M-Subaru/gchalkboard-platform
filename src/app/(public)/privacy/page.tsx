@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Privacy Policy — Global Chalkboard',
+  title: 'Privacy Policy',
   description: 'How Global Chalkboard collects, uses, and protects your personal data.',
 }
 
@@ -78,12 +78,12 @@ export default function PrivacyPage() {
           <p>We process your data on the following legal bases under UK GDPR:</p>
           <ul>
             <li>
-              <strong>Consent</strong> — you tick the consent checkbox on our forms. You may withdraw
+              <strong>Consent</strong>: you tick the consent checkbox on our forms. You may withdraw
               consent at any time by contacting us at{' '}
               <a href="mailto:info@gchalkboard.com">info@gchalkboard.com</a>.
             </li>
             <li>
-              <strong>Legitimate interests</strong> — responding to contact form enquiries and
+              <strong>Legitimate interests</strong>: responding to contact form enquiries and
               managing the ongoing placement relationship once initiated.
             </li>
           </ul>
@@ -141,7 +141,7 @@ export default function PrivacyPage() {
 
           <h2>8. Cookies</h2>
           <p>
-            Our website uses strictly necessary cookies only — for session management and to store
+            Our website uses strictly necessary cookies only. These manage your session and store
             your cookie preference. We do not use advertising cookies or behavioural tracking.
             We will inform you on your first visit and store your preference.
           </p>

@@ -189,7 +189,7 @@ export default function TeacherForm() {
             <input {...register('first_name')} placeholder="Sara" className={inputCls} />
           </Field>
           <Field label="Last Name *" error={errors.last_name?.message}>
-            <input {...register('last_name')} placeholder="Hassan" className={inputCls} />
+            <input {...register('last_name')} placeholder="Morgan" className={inputCls} />
           </Field>
           <Field label="Email Address *" error={errors.email?.message}>
             <input {...register('email')} type="email" placeholder="sara@example.com" className={inputCls} />

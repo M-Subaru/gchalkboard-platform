@@ -3,7 +3,7 @@ import TeacherForm from '@/components/forms/TeacherForm'
 
 export const metadata: Metadata = {
   title: 'Join the Talent Pool',
-  description: 'Register with Global Chalkboard. UK-qualified teachers matched with Gulf international schools. Free — no fees ever.',
+  description: 'Register with Global Chalkboard. UK-qualified teachers matched with Gulf international schools. Always free.',
 }
 
 export default function TalentPoolPage() {

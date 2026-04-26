@@ -2,7 +2,7 @@ import ContactForm from '@/components/forms/ContactForm'
 import { Mail, Clock, MapPin } from 'lucide-react'
 
 export const metadata = {
-  title: 'Contact — Global Chalkboard',
+  title: 'Contact',
   description: 'Get in touch with Global Chalkboard. We are happy to answer questions before you register or post a vacancy.',
 }
 
@@ -22,7 +22,7 @@ export default function ContactPage() {
           </h1>
           <p className="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
             Whether you have a question before registering, or you are a school that wants to
-            talk through the process first — we are easy to reach.
+            talk through the process first. We are easy to reach.
           </p>
         </div>
       </section>

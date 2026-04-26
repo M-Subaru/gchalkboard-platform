@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Terms of Service — Global Chalkboard',
+  title: 'Terms of Service',
   description: 'Terms governing use of the Global Chalkboard website and recruitment service.',
 }
 
@@ -44,7 +44,7 @@ export default function TermsPage() {
             Global Chalkboard acts as an intermediary recruitment service. We connect UK-qualified
             teachers with international schools in the Gulf region. We are not an employer, and we
             do not make hiring decisions. We facilitate introductions and support the placement
-            process — the employment relationship is between the teacher and the school directly.
+            process. The employment relationship is between the teacher and the school directly.
           </p>
           <p>
             We do not guarantee that any teacher will receive a placement, or that any school will

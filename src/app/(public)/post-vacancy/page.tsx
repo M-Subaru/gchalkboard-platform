@@ -1,7 +1,7 @@
 import SchoolForm from '@/components/forms/SchoolForm'
 
 export const metadata = {
-  title: 'Post a Vacancy — Global Chalkboard',
+  title: 'Post a Vacancy',
   description: 'Tell us about your opening and we will identify the best-matched UK teachers from our talent pool.',
 }
 
@@ -21,7 +21,7 @@ export default function PostVacancyPage() {
           </h1>
           <p className="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
             Fill in the details below and we will begin identifying the right candidates from our talent pool.
-            No upfront fees — you only pay when a placement is made.
+            No upfront fees. You only pay when a placement is made.
           </p>
         </div>
       </section>

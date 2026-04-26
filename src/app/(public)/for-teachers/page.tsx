@@ -48,7 +48,7 @@ export default function ForTeachersPage() {
           <motion.h1 variants={fadeUp} initial="hidden" animate="show" custom={1}
             className="text-4xl sm:text-5xl font-bold text-[var(--gc-slate)] leading-tight"
             style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Teach abroad — on your terms
+            Teach abroad, on your terms
           </motion.h1>
           <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-5 text-lg text-[var(--gc-muted)] leading-relaxed max-w-xl">

@@ -13,40 +13,28 @@ const fadeUp = {
   }),
 }
 
-const teacherSteps = [
-  { n: '01', title: 'Register your interest', body: 'Submit your profile, CV, and a professional headshot via our talent pool form.' },
-  { n: '02', title: 'We review your profile', body: 'We look at your qualifications, experience, and teaching background to identify the best opportunities for you.' },
-  { n: '03', title: 'We contact you directly', body: 'When we find a role that suits you, we reach out. We explain the school, the location, the package and ask whether you want to be introduced.' },
-  { n: '04', title: 'Introduction and interviews', body: 'With your consent, we introduce you to the school. They run their own interview process; we are available to advise throughout.' },
-  { n: '05', title: 'Offer, support, and beyond', body: 'Once an offer is made, we help with questions about the move, the role, the contract. We stay in touch and remain available to both you and the school.' },
+const steps = [
+  {
+    teacher: { title: 'Register your interest', body: 'Submit your profile, CV, and a professional headshot via our talent pool form.' },
+    school:  { title: 'Post your vacancy', body: 'Tell us about the role via our short vacancy form. Role type, curriculum, grade level, contract.' },
+  },
+  {
+    teacher: { title: 'We review your profile', body: 'We look at your qualifications, experience, and teaching background to identify the best opportunities for you.' },
+    school:  { title: 'We source candidates', body: 'We search our talent pool and, where needed, reach out to our wider network. Every candidate is assessed against your requirements.' },
+  },
+  {
+    teacher: { title: 'We contact you directly', body: 'When we find a role that suits you, we reach out. We explain the school, the location, the package and ask whether you want to be introduced.' },
+    school:  { title: 'You receive a shortlist', body: 'We send you a select number of well-matched candidates with a summary of each. You decide who to take forward.' },
+  },
+  {
+    teacher: { title: 'Introduction and interviews', body: 'With your consent, we introduce you to the school. They run their own interview process; we are available to advise throughout.' },
+    school:  { title: 'You run your own process', body: 'The selection process is yours to run. We are available to advise, answer questions, or help coordinate if needed.' },
+  },
+  {
+    teacher: { title: 'Offer, support, and beyond', body: 'Once an offer is made, we help with questions about the move, the role, the contract. We stay in touch and remain available to both you and the school.' },
+    school:  { title: 'Placement confirmed', body: 'Once you have made your decision and an offer is accepted, we coordinate the remaining steps and stay involved through the start of term.' },
+  },
 ]
-
-const schoolSteps = [
-  { n: '01', title: 'Post your vacancy', body: 'Tell us about the role via our short vacancy form. Role type, curriculum, grade level, contract.' },
-  { n: '02', title: 'We source candidates', body: 'We search our talent pool and, where needed, reach out to our wider network. Every candidate is assessed against your requirements.' },
-  { n: '03', title: 'You receive a shortlist', body: 'We send you a select number of well-matched candidates with a summary of each. You decide who to take forward.' },
-  { n: '04', title: 'You run your own process', body: 'The selection process is yours to run. We are available to advise, answer questions, or help coordinate if needed.' },
-  { n: '05', title: 'Placement confirmed', body: 'Once you have made your decision and an offer is accepted, we coordinate the remaining steps and stay involved through the start of term.' },
-]
-
-function StepRow({ step, index, isLast }: { step: { n: string; title: string; body: string }; index: number; isLast: boolean }) {
-  return (
-    <div className="relative pl-10 pb-10">
-      <span
-        className="absolute left-0 top-0 w-8 h-8 rounded-full bg-white border-2 border-[#0ea472]
-          flex items-center justify-center text-xs font-bold text-[#0ea472] z-10"
-        style={{ fontFamily: 'Outfit, sans-serif' }}>
-        {index + 1}
-      </span>
-      {!isLast && (
-        <div className="absolute left-4 top-8 bottom-0 w-px bg-[var(--gc-green-light)]" />
-      )}
-      <h3 className="font-semibold text-[var(--gc-slate)] mb-1.5 pt-0.5"
-        style={{ fontFamily: 'Outfit, sans-serif' }}>{step.title}</h3>
-      <p className="text-sm text-[var(--gc-muted)] leading-relaxed">{step.body}</p>
-    </div>
-  )
-}
 
 export default function HowItWorksPage() {
   return (
@@ -75,21 +63,24 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      {/* FOR TEACHERS + FOR SCHOOLS — aligned step-by-step */}
+      {/* ALIGNED STEP TABLE */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
 
           {/* Column headers */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-12">
-            <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
+          <div className="grid grid-cols-[1fr_2px_1fr] gap-0 mb-10">
+            <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+              className="pr-8 lg:pr-12">
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-1"
                 style={{ fontFamily: 'Outfit, sans-serif' }}>For Teachers</p>
               <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]"
                 style={{ fontFamily: 'Outfit, sans-serif' }}>Your route to a Gulf school</h2>
               <p className="mt-2 text-[var(--gc-muted)] text-sm">Free to register. No fees, ever.</p>
             </motion.div>
-            <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={1}>
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-2"
+            <div className="bg-[var(--gc-green-light)]" />
+            <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+              custom={1} className="pl-8 lg:pl-12">
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0ea472] mb-1"
                 style={{ fontFamily: 'Outfit, sans-serif' }}>For Schools</p>
               <h2 className="text-2xl md:text-3xl font-bold text-[var(--gc-slate)]"
                 style={{ fontFamily: 'Outfit, sans-serif' }}>Filling your vacancy</h2>
@@ -97,40 +88,73 @@ export default function HowItWorksPage() {
             </motion.div>
           </div>
 
-          {/* Paired steps — same row = same number */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-16">
-            <div>
-              {teacherSteps.map((step, i) => (
-                <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show"
-                  viewport={{ once: true }} custom={i}>
-                  <StepRow step={step} index={i} isLast={i === teacherSteps.length - 1} />
-                </motion.div>
-              ))}
-              <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-                className="mt-2 mb-10 lg:mb-0">
-                <Link href="/talent-pool"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0ea472] text-white font-semibold text-sm hover:bg-[#0b8a60] transition-colors duration-150">
-                  Join the talent pool <ArrowRight size={15} />
-                </Link>
-              </motion.div>
-            </div>
+          {/* Steps: each row is one paired step so they always align */}
+          <div className="space-y-0">
+            {steps.map((pair, i) => {
+              const isLast = i === steps.length - 1
+              return (
+                <motion.div
+                  key={i}
+                  variants={fadeUp} initial="hidden" whileInView="show"
+                  viewport={{ once: true }} custom={i * 0.5}
+                  className="grid grid-cols-[1fr_2px_1fr] gap-0"
+                >
+                  {/* Teacher step */}
+                  <div className={`pr-8 lg:pr-12 flex gap-4 py-6 ${!isLast ? 'border-b border-[var(--gc-green-light)]' : ''}`}>
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-white border-2 border-[#0ea472] flex items-center justify-center text-xs font-bold text-[#0ea472]"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}>
+                        {i + 1}
+                      </div>
+                    </div>
+                    <div className="pt-0.5">
+                      <h3 className="font-semibold text-[var(--gc-slate)] mb-1.5"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}>{pair.teacher.title}</h3>
+                      <p className="text-sm text-[var(--gc-muted)] leading-relaxed">{pair.teacher.body}</p>
+                    </div>
+                  </div>
 
-            <div>
-              {schoolSteps.map((step, i) => (
-                <motion.div key={step.n} variants={fadeUp} initial="hidden" whileInView="show"
-                  viewport={{ once: true }} custom={i}>
-                  <StepRow step={step} index={i} isLast={i === schoolSteps.length - 1} />
+                  {/* Divider */}
+                  <div className={`bg-[var(--gc-green-light)] mx-0 ${!isLast ? '' : ''}`} />
+
+                  {/* School step */}
+                  <div className={`pl-8 lg:pl-12 flex gap-4 py-6 ${!isLast ? 'border-b border-[var(--gc-green-light)]' : ''}`}>
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-white border-2 border-[#0ea472] flex items-center justify-center text-xs font-bold text-[#0ea472]"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}>
+                        {i + 1}
+                      </div>
+                    </div>
+                    <div className="pt-0.5">
+                      <h3 className="font-semibold text-[var(--gc-slate)] mb-1.5"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}>{pair.school.title}</h3>
+                      <p className="text-sm text-[var(--gc-muted)] leading-relaxed">{pair.school.body}</p>
+                    </div>
+                  </div>
                 </motion.div>
-              ))}
-              <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-                className="mt-2">
-                <Link href="/post-vacancy"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0ea472] text-white font-semibold text-sm hover:bg-[#0b8a60] transition-colors duration-150">
-                  Post a vacancy <ArrowRight size={15} />
-                </Link>
-              </motion.div>
-            </div>
+              )
+            })}
           </div>
+
+          {/* Buttons row — same grid so they align with their column */}
+          <motion.div
+            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={3}
+            className="grid grid-cols-[1fr_2px_1fr] gap-0 mt-8"
+          >
+            <div className="pr-8 lg:pr-12">
+              <Link href="/talent-pool"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0ea472] text-white font-semibold text-sm hover:bg-[#0b8a60] transition-colors duration-150">
+                Join the talent pool <ArrowRight size={15} />
+              </Link>
+            </div>
+            <div />
+            <div className="pl-8 lg:pl-12">
+              <Link href="/post-vacancy"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0ea472] text-white font-semibold text-sm hover:bg-[#0b8a60] transition-colors duration-150">
+                Post a vacancy <ArrowRight size={15} />
+              </Link>
+            </div>
+          </motion.div>
 
         </div>
       </section>
