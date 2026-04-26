@@ -84,19 +84,18 @@ export default function HomePage() {
               >
                 Teaching abroad starts
                 <br />with the right{' '}
-                <span className="text-gradient">
-                  <Highlighter
-                    action="underline"
-                    color="#0ea472"
-                    strokeWidth={2.5}
-                    animationDuration={600}
-                    iterations={1}
-                    isView={false}
-                    delay={900}
-                  >
-                    introduction
-                  </Highlighter>
-                </span>
+                <Highlighter
+                  action="underline"
+                  color="#0ea472"
+                  strokeWidth={2.5}
+                  animationDuration={600}
+                  iterations={1}
+                  isView={false}
+                  delay={900}
+                  className="text-gradient"
+                >
+                  introduction
+                </Highlighter>
               </motion.h1>
 
               <motion.p
@@ -296,18 +295,18 @@ export default function HomePage() {
                 <DottedMap
                   width={160}
                   height={80}
-                  mapSamples={4000}
-                  dotColor="#0ea47220"
+                  mapSamples={5000}
+                  dotColor="#0ea47270"
                   markerColor="#0ea472"
-                  dotRadius={0.3}
+                  dotRadius={0.6}
                   pulse
                   markers={[
-                    { lat: 51.5074, lng: -0.1278,  size: 3.0 },   // UK
-                    { lat: 24.7136, lng: 46.6753,  size: 3.5 },   // Saudi Arabia
-                    { lat: 29.3759, lng: 47.9774,  size: 2.8 },   // Kuwait
-                    { lat: 25.2854, lng: 51.531,   size: 2.8 },   // Qatar
-                    { lat: 26.0667, lng: 50.5577,  size: 2.5 },   // Bahrain
-                    { lat: 23.614,  lng: 58.5922,  size: 3.0 },   // Oman
+                    { lat: 51.5074, lng: -0.1278,  size: 1.3 },   // UK
+                    { lat: 24.7136, lng: 46.6753,  size: 1.5 },   // Saudi Arabia
+                    { lat: 29.3759, lng: 47.9774,  size: 1.2 },   // Kuwait
+                    { lat: 25.2854, lng: 51.531,   size: 1.2 },   // Qatar
+                    { lat: 26.0667, lng: 50.5577,  size: 1.1 },   // Bahrain
+                    { lat: 23.614,  lng: 58.5922,  size: 1.3 },   // Oman
                   ]}
                 />
                 <div className="mt-4 flex flex-wrap gap-2">

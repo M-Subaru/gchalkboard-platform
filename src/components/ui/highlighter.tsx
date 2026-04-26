@@ -26,11 +26,8 @@ interface HighlighterProps {
   multiline?: boolean
   /** Wait for element to scroll into view before drawing */
   isView?: boolean
-  /**
-   * Extra delay in ms before drawing the annotation.
-   * Use when the parent has an enter animation (e.g. Framer Motion) so the
-   * bounding box is measured after the element has settled.
-   */
+  /** Extra class names applied to the annotated span (e.g. text-gradient) */
+  className?: string
   delay?: number
 }
 
@@ -43,6 +40,7 @@ export function Highlighter({
   iterations = 1,
   padding = 3,
   multiline = true,
+  className = '',
   isView = true,
   delay = 0,
 }: HighlighterProps) {
@@ -91,7 +89,7 @@ export function Highlighter({
   }, [shouldShow, action, color, strokeWidth, animationDuration, iterations, padding, multiline, delay])
 
   return (
-    <span ref={elementRef} className="relative inline">
+    <span ref={elementRef} className={`relative inline ${className}`.trim()}>
       {children}
     </span>
   )

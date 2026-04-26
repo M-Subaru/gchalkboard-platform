@@ -10,9 +10,9 @@ export function Globe({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    // phi=0 faces the prime meridian (UK/Europe); Gulf is ~50 deg E so it sits
-    // just to the right on the initial view, which is exactly what we want.
-    let phi = 0
+    // phi=0 faces the Americas. Gulf region (~50°E) is at roughly phi=2.1.
+    // Starting there so the globe opens centred on the Middle East / Gulf.
+    let phi = 2.1
     let width = 0
     let isDragging = false
     let lastX = 0
